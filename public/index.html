@@ -35,6 +35,18 @@
         <div class="page-container">
             <!-- Left Sidebar -->
             <aside class="sidebar">
+                <!-- Calendar Widget -->
+                <div class="sidebar-section calendar-section">
+                    <h3 class="sidebar-title">
+                        <span>📅 Today's Schedule</span>
+                        <span class="event-count" id="todayEventCount">0</span>
+                    </h3>
+                    <div id="calendarWidget" class="calendar-widget">
+                        <!-- Event items rendered here -->
+                    </div>
+                </div>
+
+                <!-- Categories -->
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Categories</h3>
                     <nav class="category-nav">
@@ -91,6 +103,8 @@
                 <span id="lastUpdated" class="last-updated"></span>
                 <span class="footer-divider">•</span>
                 <span id="articleCount" class="article-count"></span>
+                <span class="footer-divider">•</span>
+                <span class="version">v1.1</span>
             </div>
         </footer>
     </div>

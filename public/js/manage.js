@@ -4,11 +4,13 @@
 
 // ==================== State Management ====================
 let feeds = [];
+let calendars = [];
 let settings = {};
 let originalConfig = null;
 let selectedCategory = 'all';
 let searchQuery = '';
 let hasChanges = false;
+let activeTab = 'feeds';
 
 // ==================== DOM Elements ====================
 const elements = {
@@ -43,7 +45,29 @@ const elements = {
     editFeedUrl: document.getElementById('editFeedUrl'),
     editFeedCategory: document.getElementById('editFeedCategory'),
     editFeedEnabled: document.getElementById('editFeedEnabled'),
-    deleteFeedBtn: document.getElementById('deleteFeedBtn')
+    deleteFeedBtn: document.getElementById('deleteFeedBtn'),
+
+    // Calendar Elements
+    totalCalendars: document.getElementById('totalCalendars'),
+    enabledCalendars: document.getElementById('enabledCalendars'),
+    calendarsList: document.getElementById('calendarsList'),
+    addCalendarBtn: document.getElementById('addCalendarBtn'),
+
+    // Add Calendar Modal
+    addCalendarModal: document.getElementById('addCalendarModal'),
+    addCalendarForm: document.getElementById('addCalendarForm'),
+    calendarName: document.getElementById('calendarName'),
+    calendarUrl: document.getElementById('calendarUrl'),
+    calendarEnabled: document.getElementById('calendarEnabled'),
+
+    // Edit Calendar Modal
+    editCalendarModal: document.getElementById('editCalendarModal'),
+    editCalendarForm: document.getElementById('editCalendarForm'),
+    editCalendarIndex: document.getElementById('editCalendarIndex'),
+    editCalendarName: document.getElementById('editCalendarName'),
+    editCalendarUrl: document.getElementById('editCalendarUrl'),
+    editCalendarEnabled: document.getElementById('editCalendarEnabled'),
+    deleteCalendarBtn: document.getElementById('deleteCalendarBtn')
 };
 
 // ==================== Theme Management ====================
@@ -74,6 +98,7 @@ async function loadConfig() {
 
         const data = await response.json();
         feeds = data.feeds || [];
+        calendars = (data.calendar && data.calendar.sources) || [];
         settings = data.settings || {};
         originalConfig = JSON.parse(JSON.stringify(data));
 
@@ -83,6 +108,8 @@ async function loadConfig() {
         updateStats();
         updateCategoryFilter();
         renderFeeds();
+        updateCalendarStats();
+        renderCalendars();
 
         elements.loadingState.classList.add('hidden');
     } catch (error) {
@@ -107,6 +134,9 @@ async function saveConfig() {
 
         const config = {
             feeds: feeds,
+            calendar: {
+                sources: calendars
+            },
             settings: settings
         };
 
@@ -405,6 +435,152 @@ function updateSaveButton() {
     }
 }
 
+// ==================== Calendar Management ====================
+function renderCalendars() {
+    if (!elements.calendarsList) return;
+
+    elements.calendarsList.innerHTML = '';
+
+    if (calendars.length === 0) {
+        elements.calendarsList.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">📅</div>
+                <h2>No calendars added</h2>
+                <p>Click "Add Calendar" to connect your first calendar</p>
+            </div>
+        `;
+        return;
+    }
+
+    calendars.forEach((calendar, index) => {
+        const item = createCalendarItem(calendar, index);
+        elements.calendarsList.appendChild(item);
+    });
+}
+
+function createCalendarItem(calendar, index) {
+    const item = document.createElement('div');
+    item.className = 'feed-item' + (calendar.enabled === false ? ' disabled' : '');
+
+    item.innerHTML = `
+        <div class="feed-toggle ${calendar.enabled !== false ? 'active' : ''}" data-index="${index}"></div>
+        <div class="feed-info">
+            <div class="feed-name">${escapeHtml(calendar.name)}</div>
+            <div class="feed-url">${escapeHtml(calendar.url)}</div>
+        </div>
+        <div class="feed-actions">
+            <button class="icon-btn" data-action="edit" data-index="${index}" title="Edit calendar">
+                ✏️
+            </button>
+        </div>
+    `;
+
+    // Toggle handler
+    item.querySelector('.feed-toggle').addEventListener('click', () => {
+        calendar.enabled = !calendar.enabled;
+        markChanged();
+        renderCalendars();
+        updateCalendarStats();
+    });
+
+    // Edit handler
+    item.querySelector('[data-action="edit"]').addEventListener('click', () => {
+        openEditCalendarModal(index);
+    });
+
+    return item;
+}
+
+function updateCalendarStats() {
+    if (!elements.totalCalendars) return;
+
+    const enabled = calendars.filter(c => c.enabled !== false).length;
+    elements.totalCalendars.textContent = calendars.length;
+    elements.enabledCalendars.textContent = enabled;
+}
+
+function openAddCalendarModal() {
+    elements.addCalendarForm.reset();
+    elements.calendarEnabled.checked = true;
+    elements.addCalendarModal.classList.remove('hidden');
+}
+
+function closeAddCalendarModal() {
+    elements.addCalendarModal.classList.add('hidden');
+}
+
+function openEditCalendarModal(index) {
+    const calendar = calendars[index];
+    elements.editCalendarIndex.value = index;
+    elements.editCalendarName.value = calendar.name;
+    elements.editCalendarUrl.value = calendar.url;
+    elements.editCalendarEnabled.checked = calendar.enabled !== false;
+    elements.editCalendarModal.classList.remove('hidden');
+}
+
+function closeEditCalendarModal() {
+    elements.editCalendarModal.classList.add('hidden');
+}
+
+function addCalendar(name, url, enabled) {
+    calendars.push({
+        name: name,
+        url: url,
+        enabled: enabled
+    });
+
+    markChanged();
+    updateCalendarStats();
+    renderCalendars();
+}
+
+function editCalendar(index, name, url, enabled) {
+    calendars[index] = {
+        name: name,
+        url: url,
+        enabled: enabled
+    };
+
+    markChanged();
+    updateCalendarStats();
+    renderCalendars();
+}
+
+function deleteCalendar(index) {
+    if (!confirm(`Are you sure you want to delete "${calendars[index].name}"?`)) {
+        return;
+    }
+
+    calendars.splice(index, 1);
+    markChanged();
+    updateCalendarStats();
+    renderCalendars();
+    closeEditCalendarModal();
+}
+
+// ==================== Tab Management ====================
+function switchTab(tabName) {
+    activeTab = tabName;
+
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.dataset.tab === tabName) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // Update tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        if (content.id === tabName + 'Tab') {
+            content.classList.add('active');
+        } else {
+            content.classList.remove('active');
+        }
+    });
+}
+
 // ==================== Utilities ====================
 function escapeHtml(text) {
     const div = document.createElement('div');
@@ -478,6 +654,50 @@ function setupEventListeners() {
             e.target.closest('.modal').classList.add('hidden');
         });
     });
+
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    // Calendar buttons
+    if (elements.addCalendarBtn) {
+        elements.addCalendarBtn.addEventListener('click', openAddCalendarModal);
+    }
+
+    // Add calendar form
+    if (elements.addCalendarForm) {
+        elements.addCalendarForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            addCalendar(
+                elements.calendarName.value,
+                elements.calendarUrl.value,
+                elements.calendarEnabled.checked
+            );
+            closeAddCalendarModal();
+        });
+    }
+
+    // Edit calendar form
+    if (elements.editCalendarForm) {
+        elements.editCalendarForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            editCalendar(
+                parseInt(elements.editCalendarIndex.value),
+                elements.editCalendarName.value,
+                elements.editCalendarUrl.value,
+                elements.editCalendarEnabled.checked
+            );
+            closeEditCalendarModal();
+        });
+    }
+
+    // Delete calendar
+    if (elements.deleteCalendarBtn) {
+        elements.deleteCalendarBtn.addEventListener('click', () => {
+            deleteCalendar(parseInt(elements.editCalendarIndex.value));
+        });
+    }
 
     // Warn before leaving with unsaved changes
     window.addEventListener('beforeunload', (e) => {

@@ -8,6 +8,8 @@ let lastUpdated = null;
 let autoRefreshInterval = null;
 let selectedCategory = 'all';
 let categories = new Map();
+let calendarEvents = [];
+let lastCalendarUpdate = null;
 
 // ==================== DOM Elements ====================
 const elements = {
@@ -95,6 +97,7 @@ async function refreshFeeds() {
 
         // Fetch new data
         await fetchFeeds();
+        await fetchCalendar();
 
         // Re-enable button
         elements.refreshBtn.disabled = false;
@@ -103,6 +106,29 @@ async function refreshFeeds() {
         console.error('Error refreshing feeds:', error);
         elements.refreshBtn.disabled = false;
         elements.refreshBtn.innerHTML = '<span class="btn-icon">🔄</span> Refresh';
+    }
+}
+
+async function fetchCalendar() {
+    try {
+        const response = await fetch('/api/calendar');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        calendarEvents = data.events || [];
+        lastCalendarUpdate = data.lastUpdated;
+
+        renderCalendarWidget(calendarEvents);
+
+        if (data.errors && data.errors.length > 0) {
+            console.warn('Calendar errors:', data.errors);
+        }
+    } catch (error) {
+        console.error('Error fetching calendar:', error);
+        // Fail silently - calendar is optional
+        renderCalendarWidget([]);
     }
 }
 
@@ -373,6 +399,90 @@ function filterArticlesByCategory(articles, category) {
     });
 }
 
+// ==================== Calendar Functions ====================
+function renderCalendarWidget(events) {
+    const widget = document.getElementById('calendarWidget');
+    const countEl = document.getElementById('todayEventCount');
+
+    if (!widget) return;
+
+    // Sort by start time
+    const sortedEvents = events.sort((a, b) =>
+        new Date(a.startTime) - new Date(b.startTime)
+    );
+
+    // Update count
+    if (countEl) {
+        countEl.textContent = sortedEvents.length;
+    }
+
+    // Clear and render
+    widget.innerHTML = '';
+
+    if (sortedEvents.length === 0) {
+        widget.innerHTML = '<div class="no-events">No events today</div>';
+        return;
+    }
+
+    sortedEvents.forEach(event => {
+        const eventEl = createEventElement(event);
+        widget.appendChild(eventEl);
+    });
+}
+
+function createEventElement(event) {
+    const el = document.createElement('div');
+    el.className = 'event-item';
+
+    const timeStr = formatEventTime(event.startTime, event.endTime, event.isAllDay);
+    const description = event.description || '';
+    const truncatedDesc = description.length > 100
+        ? description.substring(0, 100) + '...'
+        : description;
+
+    const timeDiv = document.createElement('div');
+    timeDiv.className = 'event-time';
+    timeDiv.textContent = timeStr;
+
+    const detailsDiv = document.createElement('div');
+    detailsDiv.className = 'event-details';
+
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'event-title';
+    titleDiv.textContent = event.title;
+
+    detailsDiv.appendChild(titleDiv);
+
+    if (truncatedDesc) {
+        const descDiv = document.createElement('div');
+        descDiv.className = 'event-description';
+        descDiv.textContent = truncatedDesc;
+        detailsDiv.appendChild(descDiv);
+    }
+
+    el.appendChild(timeDiv);
+    el.appendChild(detailsDiv);
+
+    return el;
+}
+
+function formatEventTime(start, end, isAllDay) {
+    if (isAllDay) return 'All day';
+
+    try {
+        const startDate = new Date(start);
+        const timeStr = startDate.toLocaleTimeString(undefined, {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        });
+
+        return timeStr;
+    } catch (error) {
+        return 'Time TBD';
+    }
+}
+
 function setupAutoRefresh() {
     // Load config to get refresh interval
     fetch('/api/config')
@@ -387,8 +497,9 @@ function setupAutoRefresh() {
 
             // Set up new interval
             autoRefreshInterval = setInterval(() => {
-                console.log('Auto-refreshing feeds...');
+                console.log('Auto-refreshing feeds and calendar...');
                 fetchFeeds();
+                fetchCalendar();
             }, intervalSeconds * 1000);
         })
         .catch(err => {
@@ -413,6 +524,7 @@ function init() {
     initTheme();
     setupEventListeners();
     fetchFeeds();
+    fetchCalendar();
     setupAutoRefresh();
 }
 

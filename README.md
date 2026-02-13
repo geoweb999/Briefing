@@ -1,19 +1,23 @@
-# 🗞️ Briefing - RSS Dashboard
+# 🗞️ Briefing - RSS Dashboard v1.1
 
-A beautiful, card-based RSS feed aggregator dashboard built with Python and vanilla JavaScript. Get your daily news and information from multiple sources in one clean, responsive interface.
+A beautiful, card-based RSS feed aggregator and calendar dashboard built with Python and vanilla JavaScript. Get your daily news and schedule from multiple sources in one clean, responsive interface.
 
 ![Dashboard Preview](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Version](https://img.shields.io/badge/version-1.1-blue.svg)
 
 ## ✨ Features
 
 - 📰 **RSS Feed Aggregation** - Fetch and display articles from multiple RSS/Atom feeds
+- 📅 **Calendar Integration** - Display today's events from iCal/ICS calendar feeds
+- 🔄 **Recurring Events** - Full support for daily, weekly, monthly, and yearly recurring events
 - 🎨 **Card-Based UI** - Modern, responsive design with beautiful cards
+- 🏷️ **Category Organization** - Organize feeds and articles by category
 - 🌓 **Dark Mode** - Toggle between light and dark themes
-- ⚡ **Smart Caching** - 15-minute cache to reduce load on RSS sources
+- ⚡ **Smart Caching** - 15-minute cache to reduce load on RSS and calendar sources
 - 🔄 **Auto-Refresh** - Automatically updates every 5 minutes
 - 📱 **Responsive Design** - Works perfectly on mobile, tablet, and desktop
-- ⚙️ **Easy Configuration** - Simple JSON file for managing feeds
+- ⚙️ **Management UI** - Web interface for managing feeds and calendars
 - 🚀 **Zero Dependencies** - Pure Python standard library, no external packages needed
 
 ## 🚀 Quick Start
@@ -41,9 +45,23 @@ That's it! Your dashboard is now running.
 
 ## ⚙️ Configuration
 
-### Adding/Removing RSS Feeds
+### Using the Management Interface
 
-Edit the `feeds.json` file to customize your feeds:
+The easiest way to manage feeds and calendars is through the web UI:
+
+1. Click the **⚙️ Manage** button in the header
+2. Or visit `http://localhost:3001/manage.html`
+
+**Features:**
+- Add/edit/delete RSS feeds and calendars
+- Toggle feeds and calendars on/off
+- Organize feeds by category
+- See live statistics
+- Save changes with one click
+
+### Manual Configuration (feeds.json)
+
+You can also edit the `feeds.json` file directly:
 
 ```json
 {
@@ -51,14 +69,24 @@ Edit the `feeds.json` file to customize your feeds:
     {
       "name": "TechCrunch",
       "url": "https://techcrunch.com/feed/",
-      "enabled": true
-    },
-    {
-      "name": "Your Custom Feed",
-      "url": "https://example.com/rss",
-      "enabled": true
+      "enabled": true,
+      "category": "Technology"
     }
   ],
+  "calendar": {
+    "sources": [
+      {
+        "name": "Work Calendar",
+        "url": "https://calendar.google.com/calendar/ical/your-calendar/basic.ics",
+        "enabled": true
+      },
+      {
+        "name": "US Holidays",
+        "url": "https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics",
+        "enabled": true
+      }
+    ]
+  },
   "settings": {
     "cacheTTL": 900,
     "maxItemsPerFeed": 20,
@@ -73,6 +101,13 @@ Edit the `feeds.json` file to customize your feeds:
 - **name** - Display name for the feed (appears as badge on cards)
 - **url** - RSS/Atom feed URL
 - **enabled** - Set to `false` to temporarily disable a feed without removing it
+- **category** - Group feeds by category (e.g., "Technology", "News", "Sports")
+
+#### Calendar Options
+
+- **name** - Display name for the calendar
+- **url** - iCal/ICS feed URL (works with Google Calendar, Apple Calendar, Outlook, etc.)
+- **enabled** - Set to `false` to temporarily disable a calendar without removing it
 
 #### Settings Options
 
@@ -80,6 +115,31 @@ Edit the `feeds.json` file to customize your feeds:
 - **maxItemsPerFeed** - Maximum articles to fetch per feed (default: 20)
 - **autoRefreshInterval** - Auto-refresh interval in seconds (default: 300 = 5 minutes)
 - **port** - Server port (default: 3001)
+
+### Getting Calendar iCal URLs
+
+**Google Calendar:**
+1. Open Google Calendar in a web browser
+2. Click the three dots next to your calendar name
+3. Select "Settings and sharing"
+4. Scroll down to "Integrate calendar"
+5. Copy the "Secret address in iCal format" URL
+
+**Apple Calendar (iCloud):**
+1. Open iCloud.com and go to Calendar
+2. Click the share icon next to your calendar
+3. Enable "Public Calendar"
+4. Copy the webcal URL (change `webcal://` to `https://`)
+
+**Outlook/Office 365:**
+1. Open Outlook on the web
+2. Go to Calendar settings
+3. Select "Shared calendars"
+4. Publish your calendar and copy the ICS link
+
+**Public Holiday Calendars:**
+- US Holidays: `https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics`
+- Many countries have public holiday calendars available through Google Calendar
 
 ### Finding RSS Feeds
 
@@ -108,37 +168,53 @@ Here are some popular RSS feeds to get you started:
 
 ## 🎨 Using the Dashboard
 
-### Basic Features
+### Main Dashboard
 
-- **Manage Button** - Open the feed management interface to organize and configure feeds
-- **Refresh Button** - Manually refresh all feeds and clear cache
-- **Theme Toggle** - Switch between light and dark mode (☀️/🌙)
-- **Click on Cards** - Opens the full article in a new tab
-- **Auto-Refresh** - Dashboard automatically updates every 5 minutes
+**Sidebar Features:**
+- **📅 Today's Schedule** - Shows all events happening today from your calendars
+  - Displays event time, title, and description
+  - Supports all-day events
+  - Shows recurring events (daily, weekly, monthly, yearly)
+  - Auto-updates with the rest of the dashboard
+- **Categories** - Filter articles by category
+  - Click "All Articles" to see everything
+  - Click a category to filter by that topic
 
-### Feed Management Page
+**Header Controls:**
+- **⚙️ Manage** - Open the management interface to configure feeds and calendars
+- **🔄 Refresh** - Manually refresh all feeds and calendars, clearing cache
+- **☀️/🌙 Theme Toggle** - Switch between light and dark mode
 
-Access the management page by clicking the **⚙️ Manage** button in the header or visiting `http://localhost:3001/manage.html`
-
-**Features:**
-- **Organize by Category** - Group feeds into categories for better organization
-- **Enable/Disable Feeds** - Toggle individual feeds or entire categories on/off
-- **Add New Feeds** - Add RSS feeds with custom names and categories
-- **Edit Feeds** - Modify feed names, URLs, and categories
-- **Delete Feeds** - Remove unwanted feeds
-- **Search** - Quickly find feeds by name or URL
-- **Bulk Actions** - Enable/disable all feeds in a category at once
-- **Live Stats** - See total feeds, enabled/disabled counts, and category counts
-
-### Card Information
-
-Each card displays:
-- Featured image (when available)
+**Article Cards:**
+- Featured image (when available, or 📰 placeholder)
 - Source badge (feed name)
-- Article title
-- Article description/excerpt
+- Category badge (if categorized)
+- Article title and description
 - Relative timestamp ("2 hours ago")
-- Read more link
+- Click anywhere on the card to open the full article
+
+### Management Page
+
+Access the management page by clicking the **⚙️ Manage** button or visiting `http://localhost:3001/manage.html`
+
+**Two tabs available:**
+
+**RSS Feeds Tab:**
+- Add new RSS feeds with custom names and categories
+- Edit existing feeds (name, URL, category)
+- Enable/disable feeds with a toggle
+- Delete unwanted feeds
+- Search feeds by name or URL
+- Filter by category
+- Live statistics (total feeds, enabled/disabled counts)
+
+**Calendars Tab:**
+- Add calendar sources (iCal/ICS URLs)
+- Edit existing calendars (name, URL)
+- Enable/disable calendars with a toggle
+- Delete calendar sources
+- Live statistics (total calendars, enabled count)
+- Supports Google Calendar, Apple Calendar, Outlook, and any iCal-compatible service
 
 ## 🛠️ Development
 
@@ -230,23 +306,51 @@ Make sure your browser allows localStorage. Check browser console for errors.
 The server exposes these endpoints:
 
 - `GET /api/feeds` - Fetch all enabled feeds and return aggregated articles
-- `POST /api/refresh` - Clear cache and force refresh
+- `GET /api/calendar` - Fetch today's events from all enabled calendars
 - `GET /api/config` - Get current configuration from feeds.json
+- `POST /api/refresh` - Clear cache and force refresh of feeds and calendars
+- `POST /api/save-config` - Save configuration changes from management UI
+
+## 📅 Calendar Features
+
+**Supported Formats:**
+- iCal/ICS standard format
+- Compatible with Google Calendar, Apple Calendar, Outlook, and more
+
+**Recurring Events Support:**
+- ✅ Daily recurring events (FREQ=DAILY)
+- ✅ Weekly recurring events (FREQ=WEEKLY)
+  - Supports BYDAY specification (e.g., MO,TU,WE,TH,FR)
+  - Defaults to same day of week as DTSTART if BYDAY not specified
+- ✅ Monthly recurring events (FREQ=MONTHLY, same day of month)
+- ✅ Yearly recurring events (FREQ=YEARLY, same month and day)
+- ✅ UNTIL end date support
+- ✅ INTERVAL support for all frequencies
+- ⚠️ COUNT parameter not yet supported
+- ⚠️ Complex RRULE patterns (BYMONTHDAY, BYYEARDAY, etc.) not yet supported
+
+**Event Display:**
+- Shows only events occurring today
+- Sorts events by start time
+- Displays all-day events
+- Shows event title, time, and description
+- Auto-refreshes with the rest of the dashboard
 
 ## 🔮 Future Enhancements
 
 Potential features for future versions:
 
-- [ ] Web scraping support for non-RSS sources
-- [ ] Feed management UI (add/edit/delete feeds from dashboard)
+- [ ] Advanced RRULE support (COUNT, BYMONTHDAY, etc.)
+- [ ] Week view for calendar
+- [ ] Event click to show full details
 - [ ] Search and filter articles
 - [ ] Mark articles as read/unread
 - [ ] Favorite/bookmark articles
-- [ ] Feed categories and organization
 - [ ] Keyboard shortcuts
 - [ ] Export articles to markdown
 - [ ] AI-powered article summaries
 - [ ] Multi-user support
+- [ ] Email digest of daily briefing
 
 ## 📄 License
 
