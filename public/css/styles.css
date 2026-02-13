@@ -89,6 +89,16 @@ body {
     font-size: 2rem;
 }
 
+.version-badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.75rem;
+}
+
 .header-actions {
     display: flex;
     gap: 0.75rem;
@@ -133,6 +143,11 @@ body {
     padding: 0.625rem;
     min-width: 44px;
     justify-content: center;
+}
+
+.btn-icon-only.active {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
 }
 
 .btn-icon {
@@ -446,6 +461,15 @@ body {
 .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
+}
+
+.card.read {
+    opacity: 0.6;
+    background: var(--bg-tertiary);
+}
+
+.card.read:hover {
+    opacity: 0.8;
 }
 
 .card-image-container {

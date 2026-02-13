@@ -35,6 +35,7 @@ const elements = {
     feedName: document.getElementById('feedName'),
     feedUrl: document.getElementById('feedUrl'),
     feedCategory: document.getElementById('feedCategory'),
+    feedMaxItems: document.getElementById('feedMaxItems'),
     feedEnabled: document.getElementById('feedEnabled'),
 
     // Edit Feed Modal
@@ -44,6 +45,7 @@ const elements = {
     editFeedName: document.getElementById('editFeedName'),
     editFeedUrl: document.getElementById('editFeedUrl'),
     editFeedCategory: document.getElementById('editFeedCategory'),
+    editFeedMaxItems: document.getElementById('editFeedMaxItems'),
     editFeedEnabled: document.getElementById('editFeedEnabled'),
     deleteFeedBtn: document.getElementById('deleteFeedBtn'),
 
@@ -358,6 +360,7 @@ function openEditModal(index) {
     elements.editFeedName.value = feed.name;
     elements.editFeedUrl.value = feed.url;
     elements.editFeedCategory.value = feed.category || '';
+    elements.editFeedMaxItems.value = feed.maxItems || 20;
     elements.editFeedEnabled.checked = feed.enabled !== false;
     elements.editFeedModal.classList.remove('hidden');
 }
@@ -367,11 +370,12 @@ function closeEditModal() {
 }
 
 // ==================== Feed Actions ====================
-function addFeed(name, url, category, enabled) {
+function addFeed(name, url, category, maxItems, enabled) {
     feeds.push({
         name: name,
         url: url,
         category: category || 'Uncategorized',
+        maxItems: maxItems || 20,
         enabled: enabled
     });
 
@@ -381,11 +385,12 @@ function addFeed(name, url, category, enabled) {
     renderFeeds();
 }
 
-function editFeed(index, name, url, category, enabled) {
+function editFeed(index, name, url, category, maxItems, enabled) {
     feeds[index] = {
         name: name,
         url: url,
         category: category || 'Uncategorized',
+        maxItems: maxItems || 20,
         enabled: enabled
     };
 
@@ -617,6 +622,7 @@ function setupEventListeners() {
             elements.feedName.value,
             elements.feedUrl.value,
             elements.feedCategory.value,
+            parseInt(elements.feedMaxItems.value) || 20,
             elements.feedEnabled.checked
         );
         closeAddModal();
@@ -630,6 +636,7 @@ function setupEventListeners() {
             elements.editFeedName.value,
             elements.editFeedUrl.value,
             elements.editFeedCategory.value,
+            parseInt(elements.editFeedMaxItems.value) || 20,
             elements.editFeedEnabled.checked
         );
         closeEditModal();

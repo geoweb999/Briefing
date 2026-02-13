@@ -1,10 +1,10 @@
-# 🗞️ Briefing - RSS Dashboard v1.1
+# 🗞️ Briefing - RSS Dashboard v1.2
 
 A beautiful, card-based RSS feed aggregator and calendar dashboard built with Python and vanilla JavaScript. Get your daily news and schedule from multiple sources in one clean, responsive interface.
 
 ![Dashboard Preview](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Version](https://img.shields.io/badge/version-1.1-blue.svg)
+![Version](https://img.shields.io/badge/version-1.2-blue.svg)
 
 ## ✨ Features
 
@@ -70,7 +70,8 @@ You can also edit the `feeds.json` file directly:
       "name": "TechCrunch",
       "url": "https://techcrunch.com/feed/",
       "enabled": true,
-      "category": "Technology"
+      "category": "Technology",
+      "maxItems": 20
     }
   ],
   "calendar": {
@@ -102,6 +103,9 @@ You can also edit the `feeds.json` file directly:
 - **url** - RSS/Atom feed URL
 - **enabled** - Set to `false` to temporarily disable a feed without removing it
 - **category** - Group feeds by category (e.g., "Technology", "News", "Sports")
+- **maxItems** - Maximum articles to fetch from this specific feed (default: 20, range: 1-100)
+  - **Important:** Most RSS feeds only provide 20-30 items regardless of this setting. This setting limits how many items Briefing processes, but cannot force feeds to provide more items than they contain.
+  - Some feeds support URL parameters to request more items. For example, Hacker News RSS (hnrss.org) supports `?count=50`: change `https://hnrss.org/frontpage` to `https://hnrss.org/frontpage?count=50` in the feed URL to get more items.
 
 #### Calendar Options
 
