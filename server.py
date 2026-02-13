@@ -92,7 +92,7 @@ class RSSHandler(SimpleHTTPRequestHandler):
         """Fetch and aggregate all RSS feeds"""
         config = load_config()
         enabled_feeds = [f for f in config.get('feeds', []) if f.get('enabled', True)]
-        max_items = config.get('settings', {}).get('maxItemsPerFeed', 20)
+        default_max_items = config.get('settings', {}).get('maxItemsPerFeed', 20)
         cache_ttl = config.get('settings', {}).get('cacheTTL', 900)
 
         all_articles = []
@@ -102,6 +102,8 @@ class RSSHandler(SimpleHTTPRequestHandler):
             feed_url = feed.get('url')
             feed_name = feed.get('name', feed_url)
             feed_category = feed.get('category', 'Uncategorized')
+            max_items = feed.get('maxItems', default_max_items)
+            print(f"Fetching {feed_name}: maxItems={max_items}", flush=True)
 
             try:
                 # Check cache
@@ -113,6 +115,7 @@ class RSSHandler(SimpleHTTPRequestHandler):
 
                 # Fetch feed
                 articles = self.fetch_feed(feed_url, feed_name, feed_category, max_items)
+                print(f"  -> Fetched {len(articles)} articles from {feed_name}", flush=True)
 
                 # Update cache
                 expires_at = datetime.now() + timedelta(seconds=cache_ttl)

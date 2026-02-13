@@ -10,6 +10,8 @@ let selectedCategory = 'all';
 let categories = new Map();
 let calendarEvents = [];
 let lastCalendarUpdate = null;
+let readArticles = new Set(); // Store read article URLs
+let showReadArticles = false; // Toggle for showing/hiding read articles
 
 // ==================== DOM Elements ====================
 const elements = {
@@ -23,7 +25,8 @@ const elements = {
     themeToggle: document.getElementById('themeToggle'),
     lastUpdated: document.getElementById('lastUpdated'),
     articleCount: document.getElementById('articleCount'),
-    errorMessage: document.getElementById('errorMessage')
+    errorMessage: document.getElementById('errorMessage'),
+    readToggle: document.getElementById('readToggle')
 };
 
 // ==================== Theme Management ====================
@@ -45,6 +48,54 @@ function toggleTheme() {
 function updateThemeIcon(theme) {
     const icon = elements.themeToggle.querySelector('.theme-icon');
     icon.textContent = theme === 'light' ? '🌙' : '☀️';
+}
+
+// ==================== Read Articles Management ====================
+function loadReadArticles() {
+    const saved = localStorage.getItem('readArticles');
+    if (saved) {
+        readArticles = new Set(JSON.parse(saved));
+    }
+}
+
+function saveReadArticles() {
+    localStorage.setItem('readArticles', JSON.stringify([...readArticles]));
+}
+
+function markArticleAsRead(url) {
+    readArticles.add(url);
+    saveReadArticles();
+}
+
+function isArticleRead(url) {
+    return readArticles.has(url);
+}
+
+function toggleReadArticlesVisibility() {
+    showReadArticles = !showReadArticles;
+    updateReadToggleButton();
+
+    // Re-render cards with current filter
+    const filteredArticles = filterArticlesByCategory(articles, selectedCategory);
+    renderCards(filteredArticles);
+
+    // Update footer with correct counts
+    updateFooter(filteredArticles);
+}
+
+function updateReadToggleButton() {
+    if (!elements.readToggle) return;
+
+    const icon = elements.readToggle.querySelector('.btn-icon');
+    if (showReadArticles) {
+        elements.readToggle.classList.add('active');
+        icon.textContent = '👁️';
+        elements.readToggle.title = 'Hide read articles';
+    } else {
+        elements.readToggle.classList.remove('active');
+        icon.textContent = '👁️‍🗨️';
+        elements.readToggle.title = 'Show read articles';
+    }
 }
 
 // ==================== API Functions ====================
@@ -169,23 +220,74 @@ function displayFeedErrors(errors) {
 function renderCards(articles) {
     elements.cardsGrid.innerHTML = '';
 
-    articles.forEach(article => {
+    // Filter out read articles if toggle is off
+    let displayArticles = articles;
+    if (!showReadArticles) {
+        displayArticles = articles.filter(article => !isArticleRead(article.link));
+    }
+
+    // Sort by publication date - oldest first
+    displayArticles.sort((a, b) => {
+        const dateA = new Date(a.pubDate);
+        const dateB = new Date(b.pubDate);
+        return dateA - dateB; // Ascending order (oldest first)
+    });
+
+    displayArticles.forEach(article => {
         const card = createCard(article);
         elements.cardsGrid.appendChild(card);
     });
 
-    elements.cardsGrid.classList.remove('hidden');
+    // Show empty state if no articles to display
+    if (displayArticles.length === 0) {
+        elements.emptyState.classList.remove('hidden');
+        elements.cardsGrid.classList.add('hidden');
+    } else {
+        elements.cardsGrid.classList.remove('hidden');
+        elements.emptyState.classList.add('hidden');
+    }
+
     elements.loadingState.classList.add('hidden');
     elements.errorState.classList.add('hidden');
-    elements.emptyState.classList.add('hidden');
 }
 
 function createCard(article) {
     const card = document.createElement('div');
     card.className = 'card';
 
+    // Mark as read if already read
+    if (isArticleRead(article.link)) {
+        card.classList.add('read');
+    }
+
     // Handle click to open article
     card.addEventListener('click', () => {
+        markArticleAsRead(article.link);
+
+        // If we're not showing read articles, remove the card with animation
+        if (!showReadArticles) {
+            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+
+            setTimeout(() => {
+                card.remove();
+                updateArticleCount();
+                updateCategoryFilter(categories);
+
+                // Check if grid is empty
+                if (elements.cardsGrid.children.length === 0) {
+                    elements.emptyState.classList.remove('hidden');
+                    elements.cardsGrid.classList.add('hidden');
+                }
+            }, 300);
+        } else {
+            // If showing read articles, just update the visual state
+            card.classList.add('read');
+            updateArticleCount();
+            updateCategoryFilter(categories);
+        }
+
         window.open(article.link, '_blank', 'noopener,noreferrer');
     });
 
@@ -306,15 +408,16 @@ function updateFooter(displayedArticles = articles) {
         elements.lastUpdated.textContent = `Updated ${formatRelativeTime(lastUpdated)}`;
     }
 
-    // Update article count to show filtered count
-    const count = displayedArticles.length;
+    updateArticleCount(displayedArticles);
+}
+
+function updateArticleCount(displayedArticles = articles) {
+    // Calculate unread count
+    const unreadCount = articles.filter(a => !isArticleRead(a.link)).length;
     const totalCount = articles.length;
 
-    if (selectedCategory === 'all') {
-        elements.articleCount.textContent = `${count} article${count !== 1 ? 's' : ''}`;
-    } else {
-        elements.articleCount.textContent = `${count} of ${totalCount} articles`;
-    }
+    // Show unread count
+    elements.articleCount.textContent = `${unreadCount} unread of ${totalCount} articles`;
 }
 
 // ==================== Category Functions ====================
@@ -331,12 +434,20 @@ function updateCategoryFilter(categoryMap) {
     const categoryChips = document.getElementById('categoryChips');
     categoryChips.innerHTML = '';
 
-    // Update "All Articles" count
-    const totalCount = articles.length;
+    // Calculate unread count for "All Articles"
+    const unreadArticles = articles.filter(a => !isArticleRead(a.link));
+    const unreadCount = unreadArticles.length;
     const allCountEl = document.getElementById('allCount');
     if (allCountEl) {
-        allCountEl.textContent = totalCount;
+        allCountEl.textContent = unreadCount;
     }
+
+    // Calculate unread counts per category
+    const unreadCategoryMap = new Map();
+    unreadArticles.forEach(article => {
+        const cat = article.category || 'Uncategorized';
+        unreadCategoryMap.set(cat, (unreadCategoryMap.get(cat) || 0) + 1);
+    });
 
     // Alphabetical categories (excluding Uncategorized)
     const sortedCategories = Array.from(categoryMap.keys())
@@ -344,13 +455,13 @@ function updateCategoryFilter(categoryMap) {
         .sort();
 
     sortedCategories.forEach(category => {
-        const count = categoryMap.get(category);
+        const unreadInCategory = unreadCategoryMap.get(category) || 0;
         const item = document.createElement('button');
         item.className = 'category-item';
         item.dataset.category = category;
         item.innerHTML = `
             <span class="category-name">${category}</span>
-            <span class="category-count">${count}</span>
+            <span class="category-count">${unreadInCategory}</span>
         `;
         item.addEventListener('click', () => selectCategory(category));
         categoryChips.appendChild(item);
@@ -358,13 +469,13 @@ function updateCategoryFilter(categoryMap) {
 
     // Add Uncategorized at end if exists
     if (categoryMap.has('Uncategorized')) {
-        const count = categoryMap.get('Uncategorized');
+        const unreadInUncategorized = unreadCategoryMap.get('Uncategorized') || 0;
         const item = document.createElement('button');
         item.className = 'category-item';
         item.dataset.category = 'Uncategorized';
         item.innerHTML = `
             <span class="category-name">Uncategorized</span>
-            <span class="category-count">${count}</span>
+            <span class="category-count">${unreadInUncategorized}</span>
         `;
         item.addEventListener('click', () => selectCategory('Uncategorized'));
         categoryChips.appendChild(item);
@@ -512,6 +623,11 @@ function setupEventListeners() {
     elements.refreshBtn.addEventListener('click', refreshFeeds);
     elements.themeToggle.addEventListener('click', toggleTheme);
 
+    // Read toggle button
+    if (elements.readToggle) {
+        elements.readToggle.addEventListener('click', toggleReadArticlesVisibility);
+    }
+
     // Add event listener for "All Articles" button
     const allArticlesBtn = document.querySelector('[data-category="all"]');
     if (allArticlesBtn) {
@@ -522,6 +638,8 @@ function setupEventListeners() {
 // ==================== Initialization ====================
 function init() {
     initTheme();
+    loadReadArticles();
+    updateReadToggleButton();
     setupEventListeners();
     fetchFeeds();
     fetchCalendar();
