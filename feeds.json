@@ -830,9 +830,9 @@
     },
     {
       "name": "Hacker News Summary",
-      "url": "http://www.hackernews.im/feed",
-      "enabled": true,
-      "category": "Uncategorized"
+      "url": "https://hnrss.org/frontpage",
+      "category": "Uncategorized",
+      "enabled": true
     },
     {
       "name": "Hacking Articles",
@@ -1963,6 +1963,20 @@
       "category": "Uncategorized"
     }
   ],
+  "calendar": {
+    "sources": [
+      {
+        "name": "US Holidays",
+        "url": "https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics",
+        "enabled": true
+      },
+      {
+        "name": "Personal",
+        "url": "https://calendar.google.com/calendar/ical/glweber%40dons.usfca.edu/private-a31aefd5ca59d4627d5c9db83f4f73eb/basic.ics",
+        "enabled": true
+      }
+    ]
+  },
   "settings": {
     "cacheTTL": 900,
     "maxItemsPerFeed": 20,

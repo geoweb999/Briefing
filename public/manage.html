@@ -30,6 +30,18 @@
 
         <!-- Main Content -->
         <main class="main">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="feeds">
+                    <span>📰 RSS Feeds</span>
+                </button>
+                <button class="tab-btn" data-tab="calendar">
+                    <span>📅 Calendars</span>
+                </button>
+            </div>
+
+            <!-- Feeds Tab -->
+            <div id="feedsTab" class="tab-content active">
             <!-- Stats Bar -->
             <div class="stats-bar">
                 <div class="stat-item">
@@ -88,6 +100,43 @@
                 <div class="spinner"></div>
                 <p>Loading feeds...</p>
             </div>
+            </div> <!-- End Feeds Tab -->
+
+            <!-- Calendar Tab -->
+            <div id="calendarTab" class="tab-content">
+                <!-- Calendar Stats -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Calendars:</span>
+                        <span id="totalCalendars" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Enabled:</span>
+                        <span id="enabledCalendars" class="stat-value">0</span>
+                    </div>
+                </div>
+
+                <!-- Calendar Action Bar -->
+                <div class="action-bar">
+                    <div class="calendar-help">
+                        <p><strong>ℹ️ How to get iCal URL:</strong></p>
+                        <ul>
+                            <li><strong>Google Calendar:</strong> Settings → Calendar settings → Secret address in iCal format</li>
+                            <li><strong>Apple iCloud:</strong> Share calendar → Public Calendar</li>
+                            <li><strong>Outlook:</strong> Calendar → Publish → ICS link</li>
+                        </ul>
+                    </div>
+                    <button id="addCalendarBtn" class="btn btn-primary">
+                        <span class="btn-icon">➕</span>
+                        Add Calendar
+                    </button>
+                </div>
+
+                <!-- Calendars List -->
+                <div id="calendarsList" class="feeds-list">
+                    <!-- Calendars will be rendered here -->
+                </div>
+            </div> <!-- End Calendar Tab -->
         </main>
 
         <!-- Add Feed Modal -->
@@ -175,7 +224,83 @@
                 </div>
             </div>
         </div>
+
+        <!-- Add Calendar Modal -->
+        <div id="addCalendarModal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add New Calendar</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCalendarForm">
+                        <div class="form-group">
+                            <label for="calendarName">Calendar Name *</label>
+                            <input type="text" id="calendarName" required placeholder="e.g., Work Calendar" />
+                        </div>
+                        <div class="form-group">
+                            <label for="calendarUrl">iCal URL *</label>
+                            <input type="url" id="calendarUrl" required placeholder="https://calendar.google.com/calendar/ical/.../basic.ics" />
+                            <small>Get this from your calendar provider's sharing/export settings</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="calendarEnabled" checked />
+                                <span>Enable this calendar</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" form="addCalendarForm" class="btn btn-primary">Add Calendar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Calendar Modal -->
+        <div id="editCalendarModal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Edit Calendar</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCalendarForm">
+                        <input type="hidden" id="editCalendarIndex" />
+                        <div class="form-group">
+                            <label for="editCalendarName">Calendar Name *</label>
+                            <input type="text" id="editCalendarName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="editCalendarUrl">iCal URL *</label>
+                            <input type="url" id="editCalendarUrl" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="editCalendarEnabled" />
+                                <span>Enable this calendar</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteCalendarBtn">Delete Calendar</button>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                        <button type="submit" form="editCalendarForm" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 2rem; padding: 1.5rem; text-align: center; color: var(--text-tertiary); font-size: 0.85rem; border-top: 1px solid var(--border-color);">
+        Briefing Dashboard v1.1
+    </footer>
 
     <script src="js/manage.js"></script>
 </body>
