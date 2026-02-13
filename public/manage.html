@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Feeds - Briefing</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/manage.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">
+                    <span class="logo-icon">⚙️</span>
+                    Manage Feeds
+                </h1>
+                <div class="header-actions">
+                    <a href="index.html" class="btn btn-secondary">
+                        <span class="btn-icon">🗞️</span>
+                        Back to Dashboard
+                    </a>
+                    <button id="themeToggle" class="btn btn-icon-only" title="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-label">Total Feeds:</span>
+                    <span id="totalFeeds" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Enabled:</span>
+                    <span id="enabledFeeds" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Disabled:</span>
+                    <span id="disabledFeeds" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Categories:</span>
+                    <span id="categoryCount" class="stat-value">0</span>
+                </div>
+            </div>
+
+            <!-- Action Bar -->
+            <div class="action-bar">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search feeds..." />
+                </div>
+                <div class="action-buttons">
+                    <button id="addFeedBtn" class="btn btn-primary">
+                        <span class="btn-icon">➕</span>
+                        Add Feed
+                    </button>
+                    <button id="saveBtn" class="btn btn-success">
+                        <span class="btn-icon">💾</span>
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="category-chip active" data-category="all">
+                    All Feeds
+                </button>
+                <button class="category-chip" data-category="uncategorized">
+                    Uncategorized
+                </button>
+                <div id="categoryChips"></div>
+            </div>
+
+            <!-- Feeds List -->
+            <div id="feedsList" class="feeds-list">
+                <!-- Feeds will be rendered here -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading feeds...</p>
+            </div>
+        </main>
+
+        <!-- Add Feed Modal -->
+        <div id="addFeedModal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add New Feed</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="addFeedForm">
+                        <div class="form-group">
+                            <label for="feedName">Feed Name *</label>
+                            <input type="text" id="feedName" required placeholder="e.g., My Favorite Blog" />
+                        </div>
+                        <div class="form-group">
+                            <label for="feedUrl">Feed URL *</label>
+                            <input type="url" id="feedUrl" required placeholder="https://example.com/feed/" />
+                            <small>RSS or Atom feed URL</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedCategory">Category (optional)</label>
+                            <input type="text" id="feedCategory" placeholder="e.g., Technology, News, Sports" list="categorySuggestions" />
+                            <datalist id="categorySuggestions">
+                                <!-- Categories will be populated here -->
+                            </datalist>
+                            <small>Create a new category or choose from existing ones</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="feedEnabled" checked />
+                                <span>Enable this feed</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" form="addFeedForm" class="btn btn-primary">Add Feed</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Feed Modal -->
+        <div id="editFeedModal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Edit Feed</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="editFeedForm">
+                        <input type="hidden" id="editFeedIndex" />
+                        <div class="form-group">
+                            <label for="editFeedName">Feed Name *</label>
+                            <input type="text" id="editFeedName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="editFeedUrl">Feed URL *</label>
+                            <input type="url" id="editFeedUrl" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="editFeedCategory">Category (optional)</label>
+                            <input type="text" id="editFeedCategory" list="editCategorySuggestions" />
+                            <datalist id="editCategorySuggestions">
+                                <!-- Categories will be populated here -->
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="editFeedEnabled" />
+                                <span>Enable this feed</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteFeedBtn">Delete Feed</button>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                        <button type="submit" form="editFeedForm" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/manage.js"></script>
+</body>
+</html>

@@ -1,0 +1,1972 @@
+{
+  "feeds": [
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Hacker News",
+      "url": "https://hnrss.org/frontpage",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "BBC News",
+      "url": "https://feeds.bbci.co.uk/news/rss.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Verge",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "10gen",
+      "url": "http://blog.10gen.com/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "38 North",
+      "url": "http://feeds.feedburner.com/38North",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "38 North: Informed Analysis of North Korea",
+      "url": "http://38north.org/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "9to5Mac",
+      "url": "http://9to5mac.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "@chinoisfemme RSS | Webstagram",
+      "url": "http://widget.stagram.com/rss/n/chinoisfemme/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "@lastlooks RSS | Webstagr...",
+      "url": "http://widget.stagram.com/rss/n/lastlooks/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "@noir_impressions",
+      "url": "http://widget.websta.me/rss/n/noir_impressions",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "@scorpio_addictions RSS | Webstagra...",
+      "url": "http://widget.stagram.com/rss/n/scorpio_addictions",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "[H]ardOCP News/Article Feed",
+      "url": "http://hardocp.com/RSS/all_hardocp.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "A blog to Read! Kumpulan kisah menarik anak muda",
+      "url": "http://www.ablogtoread.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "A VC",
+      "url": "http://feeds.feedburner.com/AVc",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Abnormal Returns",
+      "url": "http://abnormalreturns.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "abovethecrowd.com",
+      "url": "http://abovethecrowd.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Acquire",
+      "url": "http://feeds.feedburner.com/acquire",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Across the Curve",
+      "url": "http://feeds.feedburner.com/acrossthecurve",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Adobe Photoshop Lightroom Killer Tips",
+      "url": "http://lightroomkillertips.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Aeon | a world of ideas",
+      "url": "https://aeon.co/feed.rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Afraid to Trade.com Blog - Overcoming Stock Mar...",
+      "url": "http://blog.afraidtotrade.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Agglomerations",
+      "url": "https://agglomerations.substack.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "AIRLINE BIZ",
+      "url": "http://aviationblog.dallasnews.com/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "AIRLINE ROUTE UPDATES",
+      "url": "http://airlineroute.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "AirlineReporter",
+      "url": "http://www.airlinereporter.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Alexander Lobrano",
+      "url": "http://www.alexanderlobrano.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "An SF Techie in NYC",
+      "url": "http://antistupid.tumblr.com/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Android and Me",
+      "url": "http://androidandme.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Android Community",
+      "url": "http://feeds.feedburner.com/AndroidCommunity",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Anne Applebaum | The Atlantic",
+      "url": "https://www.theatlantic.com/feed/author/anne-applebaum/",
+      "category": "World Affairs",
+      "enabled": true
+    },
+    {
+      "name": "Armis",
+      "url": "https://www.armis.com//feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "ArmsControlWonk",
+      "url": "http://feeds.feedburner.com/acw",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Ars Technica",
+      "url": "http://feeds.arstechnica.com/arstechnica/index/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Ask a CFI",
+      "url": "http://feeds.feedburner.com/AskACfi",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Ask a Korean!",
+      "url": "http://askakorean.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Ask a Manager",
+      "url": "http://askamanager.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "askblog",
+      "url": "http://www.arnoldkling.com/blog/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Automated Home",
+      "url": "http://www.automatedhome.co.uk/component/option,com_rss/feed,RSS2.0/no_html,1/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Avherald RSS Feed",
+      "url": "http://www.martijnburg.nl/tools/avherald.php",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Axis Of Oversteer",
+      "url": "http://axisofoversteer.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Backblaze Blog",
+      "url": "http://feeds.feedburner.com/BackblazeBlog",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Barron's Cover Story",
+      "url": "http://online.barrons.com/xml/rss/3_7533.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Barron's Current Yield",
+      "url": "http://online.barrons.com/xml/rss/3_7546.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Barron's Getting Technical",
+      "url": "http://online.barrons.com/xml/rss/3_7524.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Barron's Hulbert on Markets",
+      "url": "http://online.barrons.com/xml/rss/3_7529.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Barron's International Trader - Asia",
+      "url": "http://online.barrons.com/xml/rss/3_7542.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Barron's The Trader",
+      "url": "http://online.barrons.com/xml/rss/3_7541.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "BARRONS.com: Stocks To Watch Today",
+      "url": "http://feeds2.feedburner.com/barrons/stockstowatchtoday/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "BARRONS.com: Tech Trader Daily - Barron's Online",
+      "url": "http://feeds.barrons.info/barrons/techtraderdaily/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Barton's Blog",
+      "url": "http://bartongeorge.net/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Behind The Scenes Of Hips...",
+      "url": "http://blog.hipstamatic.com/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Ben Horowitz, Author at Andreessen Horowitz",
+      "url": "http://bhorowitz.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Benedict Evans",
+      "url": "http://ben-evans.com/benedictevans?format=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Bernalwood",
+      "url": "http://bernalwood.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Black Horizon",
+      "url": "http://deepbluehorizon.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Blackfive",
+      "url": "http://www.blackfive.net/main/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Blog Archives - Lawrence H. Summers",
+      "url": "http://larrysummers.com/category/blog/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "blog.avast.com EN",
+      "url": "https://blog.avast.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "BLOG.PRACTICUMINC.COM",
+      "url": "http://blog.practicuminc.com/rss2.aspx",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Bluoz",
+      "url": "http://www.bluoz.com/blog/index.php?/feeds/index.rss2",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Book of the week | The Guardian",
+      "url": "http://www.guardian.co.uk/books/series/bookoftheweek/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Borderland Beat",
+      "url": "http://www.borderlandbeat.com/feeds/posts/default?alt=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Both Sides of the Table",
+      "url": "http://feeds.feedburner.com/BothSidesOfTheTable",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Brandon and Brandon",
+      "url": "http://brandon.mlblogs.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Brett Mullins",
+      "url": "https://bcmullins.github.io/feed.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Brock Yates",
+      "url": "http://www.thetruthaboutcars.com/category/editorials/brock-yates/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Bruce F. Webster",
+      "url": "http://brucefwebster.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Building Feedly",
+      "url": "http://blog.feedly.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Burrito Justice",
+      "url": "http://burritojustice.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Calculated Risk",
+      "url": "http://www.calculatedriskblog.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Caltrain HSR Compatibility Blog",
+      "url": "http://caltrain-hsr.blogspot.com/feeds/posts/default?alt=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Can Turtles Fly? A Contrarian Investing Blog",
+      "url": "http://can-turtles-fly.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "CDM Create Digital Music",
+      "url": "http://feeds.feedburner.com/createdigitalmusic",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "chrishernandezauthor",
+      "url": "http://chrishernandezauthor.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Churning and Burning",
+      "url": "http://ptotrading.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Clive Thompson",
+      "url": "http://clivethompson.net/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Cloud Security Alliance",
+      "url": "https://cloudsecurityalliance.org/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Coding Horror",
+      "url": "http://feeds.feedburner.com/codinghorror/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Contemporist",
+      "url": "http://feeds.feedburner.com/contemporist",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Cool Tools",
+      "url": "http://feeds.feedburner.com/CoolTools",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Curbed SF -  All",
+      "url": "http://feeds.feedburner.com/CurbedSF",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "CXO Advisory Blog - Investing Notes",
+      "url": "http://feeds.feedburner.com/cxo",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Daily Options Report",
+      "url": "http://dailyoptionsreport.com/rss/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "DAILY WRITING TIPS",
+      "url": "http://feeds.feedburner.com/DailyWritingTips",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Darknet – Hacking Tools, Hacker News & Cyber Se...",
+      "url": "http://feeds.feedburner.com/darknethackers",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Data Center Design",
+      "url": "http://datacenterdesign.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Deciphering Glyph",
+      "url": "http://feeds.feedburner.com/glyph",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Derek Thompson",
+      "url": "https://derekthompson.substack.com/feed",
+      "category": "World Affairs",
+      "enabled": true
+    },
+    {
+      "name": "Derivative Dribble",
+      "url": "http://derivativedribble.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Design Milk",
+      "url": "http://feeds.feedburner.com/design-milk",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Digital Music News",
+      "url": "http://feeds.feedburner.com/digitalmusicnews",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Digital Photography School",
+      "url": "http://feeds.feedburner.com/DigitalPhotographySchool",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "DIYPhotography.net -Hacking Photogr...",
+      "url": "http://www.diyphotography.net/node/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Downloadcrew US - Latest Software",
+      "url": "http://www.downloadcrew.com/feeds/rss/latest.php",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Dpreview",
+      "url": "http://www.dpreview.com/feeds/news.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Dr. Clear Heels",
+      "url": "http://dr-clear-heels.tumblr.com/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Drezner’s World",
+      "url": "https://danieldrezner.substack.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Eat Your Kimchi",
+      "url": "http://www.eatyourkimchi.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Eater SF - All",
+      "url": "http://feeds.feedburner.com/EaterSF",
+      "category": "Local",
+      "enabled": true
+    },
+    {
+      "name": "Econlib",
+      "url": "http://econlog.econlib.org/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "EconomPic",
+      "url": "http://econompicdata.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "EDM Sauce",
+      "url": "http://www.edmsauce.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "EffectHacking - Get Latest Android Games, Apps,...",
+      "url": "http://www.effecthacking.com/feeds/posts/default?alt=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Elapsed Time",
+      "url": "http://www.hunterwalk.com/feeds/posts/default?alt=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "EMPTY KINGDOM",
+      "url": "http://www.emptykingdom.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Engadget",
+      "url": "http://www.engadget.com/rss.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "ETF Expert",
+      "url": "http://www.etfexpert.com/etf_expert/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Extremetech",
+      "url": "http://rssnewsapps.ziffdavis.com/extreme.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Falkenblog",
+      "url": "http://falkenblog.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Fear of Landing",
+      "url": "http://www.fearoflanding.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "feed/http://feeds.feedburner.com/TheSuitsOfJame...",
+      "url": "http://feeds.feedburner.com/TheSuitsOfJamesBond",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Feld Thoughts",
+      "url": "http://feeds.feedburner.com/FeldThoughts",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Film School Rejects",
+      "url": "http://feeds.feedburner.com/FilmSchoolRejects",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Fire Eye Threat Research ",
+      "url": "http://www.fireeye.com/blog/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Flight Attendant Life | Aviation. Career. Travel",
+      "url": "http://theflightattendantlife.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "FlyerTalk Forums",
+      "url": "http://www.flyertalk.com/forum/external.php?type=RSS2&forumids=490",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "FlyerTalk Forums - Star Alliance",
+      "url": "http://www.flyertalk.com/forum/external.php?type=rss2&forumids=413",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "FOREST KNOLLS NEIGHBORHOOD",
+      "url": "http://forestknolls.info/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Founders at Work - Blog",
+      "url": "http://www.foundersatwork.com/1/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Fountainhead",
+      "url": "http://fountnhead.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Fratello Watches – The Magazine Dedicated To Lu...",
+      "url": "http://www.fratellowatches.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Freakonomics",
+      "url": "http://feeds.feedburner.com/Freakonomics",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Frequent Miler",
+      "url": "http://boardingarea.com/blogs/frequentmiler/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Freshome",
+      "url": "http://feeds.feedburner.com/FreshInspirationForYourHome",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Fund my Mutual Fund",
+      "url": "http://www.fundmymutualfund.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Futuristic Play by Andrew Chen",
+      "url": "http://andrewchen.typepad.com/andrew_chens_blog/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Geoffrey Weber",
+      "url": "http://news.google.com/news?hl=en&gl=us&q=Geoffrey%20Weber&um=1&ie=UTF-8&output=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Giles Bowkett",
+      "url": "http://gilesbowkett.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Girls In Yoga Pants",
+      "url": "http://www.girlsinyogapants.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Girls In Yoga Pants",
+      "url": "http://girlsinyogapants.tumblr.com/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Gmail Blog",
+      "url": "http://gmailblog.blogspot.com/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Google Online Security Blog",
+      "url": "http://googleonlinesecurity.blogspot.com/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "GOP Leader Blog",
+      "url": "http://feeds.feedburner.com/RepLeaderBlog",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Great Leadership",
+      "url": "http://greatleadershipbydan.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Greg Mankiw's Blog",
+      "url": "http://gregmankiw.blogspot.com/feeds/posts/default?alt=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Gun Nuts Media",
+      "url": "http://gunnuts.net/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Guns.com",
+      "url": "http://www.guns.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Hacker News Summary",
+      "url": "http://www.hackernews.im/feed",
+      "enabled": true,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Hacking Articles",
+      "url": "http://www.hackingarticles.in/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Hacking Tutorials",
+      "url": "http://www.hackingtutorials.org/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Hello",
+      "url": "http://ling-bai.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "High performance",
+      "url": "http://groups.drupal.org/node/223/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "High Scalability - Building bigger, faster, mor...",
+      "url": "http://highscalability.com/rss.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "HiP Paris Blog",
+      "url": "http://hipparis.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "History Today Blog Feed",
+      "url": "http://www.historytoday.com/feed/blog.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "HODINKEE - Wristwatch News, Reviews, & Original...",
+      "url": "http://www.hodinkee.com/blog?format=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "hongkiat.com",
+      "url": "http://feedproxy.google.com/24thfloor",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Hottest Blog on San Francisco Real Estate",
+      "url": "http://sfhotlist.com/feed/atom/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "https://akfpartners.com/growth-blog - Google News",
+      "url": "https://news.google.com/news/rss/search/section/q/https%3A%2F%2Fakfpartners.com%2Fgrowth-blog/https%3A%2F%2Fakfpartners.com%2Fgrowth-blog?ned=us&hl=en&gl=US",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Hu Yoshida",
+      "url": "http://feeds.hds.com/hds/hu-yoshida",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Humble Student of the Markets",
+      "url": "http://humblestudentofthemarkets.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "I Blog to Differ",
+      "url": "https://davidrhenderson.substack.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Idiot Joy Showland",
+      "url": "http://samkriss.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "In Focus",
+      "url": "http://feeds.feedburner.com/theatlantic/infocus",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "In My Tribe",
+      "url": "https://arnoldkling.substack.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Information Dissemination",
+      "url": "http://informationdissemination.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Inside the Mind of a Ghetto Genius",
+      "url": "http://www.ghettogenius.com/feeds/posts/default?alt=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Interior Design Ideas",
+      "url": "http://www.home-designing.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "ITS Tactical",
+      "url": "http://feeds.feedburner.com/ItsTactical",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Jaguar",
+      "url": "http://www.autoblog.com/category/jaguar/rss.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Jalopnik",
+      "url": "http://www.jalopnik.com/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "James Altucher",
+      "url": "http://feeds.feedburner.com/jamesaltucher",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Jeff Matthews Is Not Making This Up",
+      "url": "http://jeffmatthewsisnotmakingthisup.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Jetwhine",
+      "url": "http://feeds.feedburner.com/jetwhine",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Jon Carroll Prose",
+      "url": "https://joncarrollprose.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "karpathy",
+      "url": "https://karpathy.bearblog.dev/feed/",
+      "category": "AI",
+      "enabled": true
+    },
+    {
+      "name": "Kid Dynamite's World",
+      "url": "http://feeds.feedburner.com/blogspot/dNro",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Kitchen Soap",
+      "url": "http://feeds2.feedburner.com/KitchenSoap",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Krebs on Security",
+      "url": "http://krebsonsecurity.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Latest Hacking News | Cyber Security News, Hack...",
+      "url": "http://www.latesthackingnews.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Lawrence H. Summers",
+      "url": "http://larrysummers.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Leading Blog: A Leadership Blog @ LeadershipNow",
+      "url": "http://leadershipnow.com/leadingblog/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Legit Reviews Hardware Articles",
+      "url": "http://feeds.feedburner.com/LegitReviews",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Letters of Note",
+      "url": "http://www.lettersofnote.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Lifehacker",
+      "url": "http://lifehacker.com/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Lightroom Journal",
+      "url": "http://blogs.adobe.com/lightroomjournal/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "LightroomNews",
+      "url": "http://lightroom-news.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Macworld",
+      "url": "http://rss.macworld.com/macworld/feeds/main",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Mainly macro ",
+      "url": "http://mainlymacro.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Maps on the Web",
+      "url": "http://mapsontheweb.tumblr.com/rss",
+      "category": "Fun",
+      "enabled": true
+    },
+    {
+      "name": "Marginal Revolution",
+      "url": "http://feeds.feedburner.com/marginalrevolution/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Market Street Railway Blog",
+      "url": "http://feeds.feedburner.com/MarketStreetRailway",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Maserati",
+      "url": "http://www.autoblog.com/category/maserati/rss.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Max Trescott on General Aviation",
+      "url": "http://feeds.feedburner.com/typepad/maxtrescott/max_trescott_on_general_a",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Maximum PC all RSS Feed",
+      "url": "http://www.maximumpc.com/articles/all/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "McKinsey",
+      "url": "http://rss.mckinseyquarterly.com/ad",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Meter Madness",
+      "url": "http://metermadness.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Metroblogging San Francisco",
+      "url": "http://sf.metblogs.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Michael Yon : Online Magazine",
+      "url": "http://www.michaelyon-online.com/rss2.php",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "milek's blog",
+      "url": "http://milek.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Million Mile Secrets",
+      "url": "http://feeds.feedburner.com/MillionMileSecrets",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Monochrome Watches",
+      "url": "http://www.monochrome.nl/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Muni Diaries",
+      "url": "http://www.munidiaries.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "myFT following",
+      "url": "https://www.ft.com/myft/following/a9514308-b4f9-4aa0-bc36-384fe05a1211.rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "MySQL Performance Blog",
+      "url": "http://www.mysqlperformanceblog.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Naildrivin' &#10106;",
+      "url": "http://www.naildrivin5.com/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Naked Security",
+      "url": "http://nakedsecurity.sophos.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Naked Security - Sophos",
+      "url": "http://feeds.feedburner.com/NakedSecurity",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Nati Shalom's Blog",
+      "url": "http://feeds2.feedburner.com/NatiShalom",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Nikon Rumors",
+      "url": "http://feeds2.feedburner.com/NikonRumors",
+      "category": "Photography",
+      "enabled": true
+    },
+    {
+      "name": "Noe Valley, SF",
+      "url": "http://feeds.feedburner.com/NoeValleySf",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "North Korean Economy Watch",
+      "url": "http://feeds.feedburner.com/NorthKoreanEconomyWatch",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Not Even Wrong",
+      "url": "http://www.math.columbia.edu/~woit/wordpress/?feed=rss2",
+      "category": "Science",
+      "enabled": true
+    },
+    {
+      "name": "NowSecure",
+      "url": "http://viaforensics.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "NYT > Psychiatry and Psychiatrists",
+      "url": "http://topics.nytimes.com/top/news/health/diseasesconditionsandhealthtopics/psychiatry_and_psychiatrists/?rss=1",
+      "category": "Psychiatry",
+      "enabled": true
+    },
+    {
+      "name": "Objective-See's Blog",
+      "url": "https://objective-see.com/rss.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Old School Value",
+      "url": "http://feeds.feedburner.com/OldSchoolValue",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "One First",
+      "url": "https://stevevladeck.substack.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "One Useful Thing",
+      "url": "https://oneusefulthing.substack.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "ONE-TWENTY TWO",
+      "url": "http://drduru.com/onetwentytwo/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "OneFreeKorea",
+      "url": "http://freekorea.us/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Packet Storm Security",
+      "url": "http://packetstormsecurity.org/headlines.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Panhandle Park Stewards",
+      "url": "http://panhandlepark.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Paul Kedrosky",
+      "url": "https://kedrosky.org/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Paul Krugman",
+      "url": "https://paulkrugman.substack.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "PC Perspective  Articles Feed",
+      "url": "http://www.pcper.com/rss/articles.rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Perpétuelle",
+      "url": "http://blog.perpetuelle.com/index.php/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Persuasion: Frankly Fukuyama",
+      "url": "https://www.persuasion.community/feed?sectionId=137248",
+      "category": "World Affairs",
+      "enabled": true
+    },
+    {
+      "name": "Phillips’s Newsletter",
+      "url": "https://phillipspobrien.substack.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Pitpass - the latest hottest F1 new...",
+      "url": "http://www.pitpass.com/fes_php/fes_usr_sit_newsfeed.php",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Popular Economics Weekly",
+      "url": "http://populareconomicsweekly.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Pornhub Comments On Stock Photos",
+      "url": "http://pornhubcommentsonstockphotos.tumblr.com/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "PostSecret",
+      "url": "http://postsecret.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Priceonomics Blog",
+      "url": "http://priceonomics.com/latest.rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Priscilla Hung",
+      "url": "http://news.google.com/news?hl=en&gl=us&q=Priscilla%20Hung&um=1&ie=UTF-8&output=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Professional Watches",
+      "url": "http://feeds.feedburner.com/professionalwatches",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Psychiatry at the Margins",
+      "url": "https://awaisaftab.substack.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Quirky Japan Blog",
+      "url": "http://qjphotos.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Radar",
+      "url": "http://feeds.feedburner.com/oreilly/radar/atom",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Rand Peck, A Life Aloft.",
+      "url": "http://randsaviationphotos.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Rands In Repose",
+      "url": "http://www.randsinrepose.com/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Reblogging Donk",
+      "url": "http://rebloggingdonk.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Restricted Data: The Nuclear Secrecy Blog",
+      "url": "http://nuclearsecrecy.com/blog/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Richard Hanania's Newsletter",
+      "url": "https://richardhanania.substack.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Robin J Brooks",
+      "url": "https://robinjbrooks.substack.com/feed",
+      "category": "Economics",
+      "enabled": true
+    },
+    {
+      "name": "Roboseyo",
+      "url": "http://roboseyo.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "RSS",
+      "url": "https://www.eset.com/blog/rss/rss.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "San FranGone: The City as it Was Pool",
+      "url": "http://api.flickr.com/services/feeds/groups_pool.gne?id=44891798@N00&lang=en-us&format=rss_200",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "scalability.org",
+      "url": "http://scalability.org/?feed=rss2",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Schneier on Security",
+      "url": "http://www.schneier.com/blog/index.rdf",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "scottberkun.com",
+      "url": "http://www.scottberkun.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "SCOTUSblog",
+      "url": "http://www.scotusblog.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "SecTools",
+      "url": "http://sectools.org/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Securelist",
+      "url": "http://www.securelist.com/en/rss/allupdates",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "sentimenTrader Blog",
+      "url": "http://sentimentrader.com/blog/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "SFist - San Francisco News, Restaurants, Events...",
+      "url": "http://sfist.com/index.rdf",
+      "category": "Local",
+      "enabled": true
+    },
+    {
+      "name": "SFLY - News and Analysis from Seeking Alpha",
+      "url": "http://seekingalpha.com/symbol/sfly.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "SFLY - News and Analysis from Seeking Alpha",
+      "url": "http://seekingalpha.com/by/symbol/sfly/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Sharam's Wildcast",
+      "url": "http://sharamtayebi.podbean.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "shuji kobayashi photography",
+      "url": "http://shujikobayashi.tumblr.com/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Signal vs. Noise",
+      "url": "http://feeds.feedburner.com/37signals/beMH",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "SocketSite™",
+      "url": "http://www.socketsite.com/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Softwarecrew | Software Reviews, News, Tips & T...",
+      "url": "http://www.softwarecrew.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "somethingaboutmaps",
+      "url": "http://somethingaboutmaps.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Sports – FiveThirtyEight",
+      "url": "http://fivethirtyeight.com/sports/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Steve Blank",
+      "url": "http://steveblank.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Steve McCurry's Blog",
+      "url": "http://stevemccurry.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Steven Landsburg | The Big Questions: Tackling ...",
+      "url": "http://www.thebigquestions.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Storagezilla",
+      "url": "http://storagezilla.typepad.com/storagezilla/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Story of the Week",
+      "url": "http://storyoftheweek.loa.org/rss.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Stratechery by Ben Thompson",
+      "url": "http://stratechery.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Strategy business",
+      "url": "http://www.strategy-business.com/all_updates.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Strategyzer Blog",
+      "url": "http://blog.strategyzer.com/posts?format=RSS",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "SWJ Blog",
+      "url": "http://smallwarsjournal.com/blog/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Tailspin's Tales",
+      "url": "http://feeds2.feedburner.com/tailspin",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "TalkAirlines",
+      "url": "http://talkairlines.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Tech News",
+      "url": "http://www.calibre11.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Aviationist",
+      "url": "http://theaviationist.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Baseline Scenario",
+      "url": "http://baselinescenario.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Big Picture",
+      "url": "http://feedproxy.google.com/TheBigPicture",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Big Picture",
+      "url": "http://www.boston.com/bigpicture/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Buxton Blog",
+      "url": "http://willthef1journo.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Change Blog",
+      "url": "http://feeds.feedburner.com/TheChangeBlog",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Cranky Flier",
+      "url": "http://feeds.feedburner.com/CrankyFlier",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Criterion Current",
+      "url": "http://www.criterion.com/blog/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Equation",
+      "url": "http://allthingsnuclear.org/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Ethical Hacker Network",
+      "url": "http://www.ethicalhacker.net/component/option,com_rss/feed,RSS2.0/no_html,1/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Fashion Forecast",
+      "url": "http://ericakato.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "the fearless runner » Feed",
+      "url": "http://www.thefearlessrunner.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Glen Park Association",
+      "url": "http://glenparknews.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Grand Narrative",
+      "url": "http://thegrandnarrative.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Impossible Cool",
+      "url": "http://theimpossiblecool.tumblr.com/rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Oatmeal - Comics, Quizzes, &...",
+      "url": "http://feeds.feedburner.com/oatmealfeed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Points Guy Articles",
+      "url": "http://feeds.feedburner.com/thepointsguy",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Practice of Leadership",
+      "url": "http://feeds.feedburner.com/ThePracticeOfLeadership",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Pursuit of Happiness",
+      "url": "https://scottsumner.substack.com/feed",
+      "category": "Economics",
+      "enabled": true
+    },
+    {
+      "name": "The Reformed Broker",
+      "url": "http://www.thereformedbroker.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Richmond District of San Francisco Blog (ri...",
+      "url": "http://feeds.feedburner.com/richmondsfblog",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Sartorialist",
+      "url": "http://www.thesartorialist.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Storage Architect",
+      "url": "http://storagearchitect.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Truth About Cars » BMW",
+      "url": "http://www.thetruthaboutcars.com/category/reviews/bmw/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Truth About Cars » Jaguar",
+      "url": "http://www.thetruthaboutcars.com/category/reviews/jaguar/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Truth About Cars » Porsche",
+      "url": "http://www.thetruthaboutcars.com/category/reviews/porsche/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "The Volokh Conspiracy",
+      "url": "http://feeds.feedburner.com/volokh/mainfeed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "TheDesignAir",
+      "url": "http://thedesignair.net/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "theFrontSteps.com - San Francisco R...",
+      "url": "http://thefrontsteps.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "TheMoneyIllusion",
+      "url": "http://www.themoneyillusion.com/?feed=rss2",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Things in the Sky",
+      "url": "http://boardingarea.com/blogs/thingsinthesky/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Threatpost",
+      "url": "http://threatpost.com/feed",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "TiPb - The #1 iPhone, iPad, and iPod touch blog",
+      "url": "http://feeds.feedburner.com/theiphoneblog",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Tony Yang Photography",
+      "url": "http://www.knsaber.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Trader Mike",
+      "url": "http://tradermike.net/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "TraderFeed",
+      "url": "http://traderfeed.blogspot.com/feeds/posts/default",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "TravelJapanBlog.com",
+      "url": "http://traveljapanblog.com/wordpress/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Ubergizmo",
+      "url": "http://www.ubergizmo.com/index.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Uchujin -The Blog",
+      "url": "http://blog.uchujin.co.uk/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Un ardiente infierno de pasión",
+      "url": "http://infiernodepasion.blogspot.com/feeds/posts/default?alt=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Uncouth Reflections",
+      "url": "http://uncouthreflections.wordpress.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Upgrd.com Matthew's Blog Feed",
+      "url": "http://upgrd.com/matthew/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Uploads from Eric Fischer",
+      "url": "http://api.flickr.com/services/feeds/photos_public.gne?id=24431382@N03&lang=en-us&format=rss_200",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Uploads from NASA Goddard Photo and Video",
+      "url": "http://api.flickr.com/services/feeds/photos_public.gne?id=24662369@N07&lang=en-us&format=rss_200",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Uploads from Octoferret",
+      "url": "http://api.flickr.com/services/feeds/photos_public.gne?id=57301170@N00&lang=en-us&format=rss_200",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "War Is Boring",
+      "url": "http://warisboring.com/?feed=rss2",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "WatchReport.com",
+      "url": "http://feeds.feedburner.com/watchreportblog",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "WatchTime – USA's No.1 Watch Magazine",
+      "url": "http://www.watchtime.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "WebUrbanist",
+      "url": "http://weburbanist.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Wirecutter: Reviews for the Real World",
+      "url": "http://feeds.feedburner.com/TheWirecutter",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "worn&wound",
+      "url": "http://feeds.feedburner.com/wornandwound",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Worse Than Failure",
+      "url": "http://syndication.thedailywtf.com/TheDailyWtf",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Write To Done",
+      "url": "http://feeds.feedburner.com/writetodone",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Writer Unboxed",
+      "url": "http://writerunboxed.com/feed/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "www.espn.com - NBA",
+      "url": "http://espn.go.com/espn/rss/nba/news",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "xkcd.com",
+      "url": "http://xkcd.com/atom.xml",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "XLR8R",
+      "url": "http://feeds.feedburner.com/xlr8rnews",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "you've been HAACKED",
+      "url": "http://feeds.haacked.com/haacked/",
+      "enabled": false,
+      "category": "Uncategorized"
+    },
+    {
+      "name": "Your EDM",
+      "url": "http://youredm.com/?feed=rss",
+      "enabled": false,
+      "category": "Uncategorized"
+    }
+  ],
+  "settings": {
+    "cacheTTL": 900,
+    "maxItemsPerFeed": 20,
+    "autoRefreshInterval": 300,
+    "port": 3001
+  }
+}
