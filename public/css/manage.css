@@ -582,3 +582,136 @@
     font-size: 3rem;
     margin-bottom: 1rem;
 }
+
+
+/* ==================== Email Settings Tab ==================== */
+.email-settings-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.email-form {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.email-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.email-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.email-form input[type="email"],
+.email-form input[type="password"],
+.email-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.email-form small {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.email-help-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+}
+
+.email-help-section h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.provider-instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.provider-instruction {
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-radius: 6px;
+}
+
+.provider-instruction strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--accent-primary);
+}
+
+.provider-instruction ol {
+    margin: 0.5rem 0 0 1.5rem;
+    padding: 0;
+}
+
+.provider-instruction li {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.provider-instruction a {
+    color: var(--accent-primary);
+    text-decoration: none;
+}
+
+.provider-instruction a:hover {
+    text-decoration: underline;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.email-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.email-status.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.email-status.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.email-status.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.section-description {
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}

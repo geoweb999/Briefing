@@ -335,6 +335,85 @@ body {
     font-style: italic;
 }
 
+/* ==================== Package Tracking Widget ==================== */
+.packages-section {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.packages-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.package-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.85rem;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    border-left: 3px solid var(--warning);
+    transition: all 0.2s ease;
+}
+
+.package-item:hover {
+    background: var(--bg-primary);
+    transform: translateX(2px);
+}
+
+.package-courier {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--warning);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    min-width: 55px;
+}
+
+.package-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.package-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+}
+
+.package-tracking {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    font-family: 'SF Mono', Monaco, Consolas, monospace;
+    margin-bottom: 0.25rem;
+}
+
+.package-delivery {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.no-packages {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.package-loading {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
 /* ==================== Main Content ==================== */
 .main {
     flex: 1;

@@ -10,6 +10,8 @@ let selectedCategory = 'all';
 let categories = new Map();
 let calendarEvents = [];
 let lastCalendarUpdate = null;
+let packages = [];
+let lastPackageUpdate = null;
 let readArticles = new Set(); // Store read article URLs
 let showReadArticles = false; // Toggle for showing/hiding read articles
 
@@ -149,6 +151,7 @@ async function refreshFeeds() {
         // Fetch new data
         await fetchFeeds();
         await fetchCalendar();
+        await fetchPackages();
 
         // Re-enable button
         elements.refreshBtn.disabled = false;
@@ -180,6 +183,35 @@ async function fetchCalendar() {
         console.error('Error fetching calendar:', error);
         // Fail silently - calendar is optional
         renderCalendarWidget([]);
+    }
+}
+
+async function fetchPackages() {
+    try {
+        // Show loading state
+        const widget = document.getElementById('packagesWidget');
+        if (widget) {
+            widget.innerHTML = '<div class="package-loading">Checking for packages...</div>';
+        }
+
+        const response = await fetch('/api/packages');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        packages = data.packages || [];
+        lastPackageUpdate = data.lastUpdated;
+
+        renderPackagesWidget(packages);
+
+        if (data.errors && data.errors.length > 0) {
+            console.warn('Package tracking errors:', data.errors);
+        }
+    } catch (error) {
+        console.error('Error fetching packages:', error);
+        // Fail silently - package tracking is optional
+        renderPackagesWidget([]);
     }
 }
 
@@ -594,6 +626,70 @@ function formatEventTime(start, end, isAllDay) {
     }
 }
 
+function renderPackagesWidget(packages) {
+    const widget = document.getElementById('packagesWidget');
+    const countEl = document.getElementById('todayPackageCount');
+
+    if (!widget) return;
+
+    // Update count
+    if (countEl) {
+        countEl.textContent = packages.length;
+    }
+
+    // Clear and render
+    widget.innerHTML = '';
+
+    if (packages.length === 0) {
+        widget.innerHTML = '<div class="no-packages">No packages this week</div>';
+        return;
+    }
+
+    packages.forEach(pkg => {
+        const packageEl = createPackageElement(pkg);
+        widget.appendChild(packageEl);
+    });
+}
+
+function createPackageElement(pkg) {
+    const el = document.createElement('div');
+    el.className = 'package-item';
+
+    const courierDiv = document.createElement('div');
+    courierDiv.className = 'package-courier';
+    courierDiv.textContent = pkg.courier || 'Unknown';
+
+    const detailsDiv = document.createElement('div');
+    detailsDiv.className = 'package-details';
+
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'package-title';
+    titleDiv.textContent = pkg.subject || 'Package';
+
+    detailsDiv.appendChild(titleDiv);
+
+    // Add tracking number if available
+    if (pkg.tracking_numbers && pkg.tracking_numbers.length > 0) {
+        const trackingDiv = document.createElement('div');
+        trackingDiv.className = 'package-tracking';
+        trackingDiv.textContent = `Tracking: ${pkg.tracking_numbers[0]}`;
+        detailsDiv.appendChild(trackingDiv);
+    }
+
+    // Add delivery date/time
+    if (pkg.delivery_date) {
+        const deliveryDiv = document.createElement('div');
+        deliveryDiv.className = 'package-delivery';
+        deliveryDiv.textContent = `Arriving ${pkg.delivery_date}`;
+        detailsDiv.appendChild(deliveryDiv);
+    }
+
+    el.appendChild(courierDiv);
+    el.appendChild(detailsDiv);
+
+    return el;
+}
+
 function setupAutoRefresh() {
     // Load config to get refresh interval
     fetch('/api/config')
@@ -608,9 +704,10 @@ function setupAutoRefresh() {
 
             // Set up new interval
             autoRefreshInterval = setInterval(() => {
-                console.log('Auto-refreshing feeds and calendar...');
+                console.log('Auto-refreshing feeds, calendar, and packages...');
                 fetchFeeds();
                 fetchCalendar();
+                fetchPackages();
             }, intervalSeconds * 1000);
         })
         .catch(err => {
@@ -643,6 +740,7 @@ function init() {
     setupEventListeners();
     fetchFeeds();
     fetchCalendar();
+    fetchPackages();
     setupAutoRefresh();
 }
 

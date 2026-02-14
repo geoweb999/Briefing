@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Tracking - Briefing</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .package-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        .btn-add {
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .btn-add:hover {
+            opacity: 0.9;
+        }
+        .package-list {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        .package-item {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .package-info h3 {
+            margin: 0 0 8px 0;
+            color: var(--text-primary);
+        }
+        .package-info p {
+            margin: 4px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .btn-delete:hover {
+            background: #c82333;
+        }
+        .page-header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <a href="/" class="btn-back">← Back to Dashboard</a>
+        <h1>📦 Package Tracking</h1>
+        <p>Add packages you're expecting today</p>
+    </div>
+
+    <div class="package-form">
+        <h2>Add Package</h2>
+        <form id="packageForm">
+            <div class="form-group">
+                <label for="packageName">Package Name / Description</label>
+                <input type="text" id="packageName" required placeholder="e.g., Amazon - Office Supplies">
+            </div>
+            <div class="form-group">
+                <label for="courier">Courier</label>
+                <select id="courier" required>
+                    <option value="">Select Courier</option>
+                    <option value="Amazon">Amazon</option>
+                    <option value="UPS">UPS</option>
+                    <option value="FedEx">FedEx</option>
+                    <option value="USPS">USPS</option>
+                    <option value="DHL">DHL</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tracking">Tracking Number (Optional)</label>
+                <input type="text" id="tracking" placeholder="1Z999AA10123456784">
+            </div>
+            <div class="form-group">
+                <label for="deliveryTime">Estimated Delivery Time (Optional)</label>
+                <input type="text" id="deliveryTime" placeholder="e.g., 2:00 PM - 5:00 PM">
+            </div>
+            <button type="submit" class="btn-add">Add Package</button>
+        </form>
+    </div>
+
+    <div class="package-list">
+        <h2 style="text-align: center; margin-bottom: 20px;">Today's Deliveries</h2>
+        <div id="packagesList"></div>
+    </div>
+
+    <script>
+        // Load packages from localStorage
+        function loadPackages() {
+            const packages = JSON.parse(localStorage.getItem('packages') || '[]');
+            renderPackages(packages);
+        }
+
+        function renderPackages(packages) {
+            const container = document.getElementById('packagesList');
+
+            if (packages.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No packages added yet</p>';
+                return;
+            }
+
+            container.innerHTML = packages.map((pkg, index) => `
+                <div class="package-item">
+                    <div class="package-info">
+                        <h3>${pkg.name}</h3>
+                        <p><strong>Courier:</strong> ${pkg.courier}</p>
+                        ${pkg.tracking ? `<p><strong>Tracking:</strong> ${pkg.tracking}</p>` : ''}
+                        ${pkg.deliveryTime ? `<p><strong>Delivery:</strong> ${pkg.deliveryTime}</p>` : ''}
+                    </div>
+                    <button class="btn-delete" onclick="deletePackage(${index})">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function deletePackage(index) {
+            const packages = JSON.parse(localStorage.getItem('packages') || '[]');
+            packages.splice(index, 1);
+            localStorage.setItem('packages', JSON.stringify(packages));
+            saveToServer(packages);
+            loadPackages();
+        }
+
+        async function saveToServer(packages) {
+            // Save to server's shipments_manual.json
+            const data = {
+                timestamp: new Date().toISOString(),
+                email: 'manual',
+                total_shipments: packages.length,
+                today_count: packages.length,
+                deliveries: packages.map(pkg => ({
+                    subject: pkg.name,
+                    from: 'Manual Entry',
+                    date: new Date().toISOString(),
+                    tracking_numbers: pkg.tracking ? [pkg.tracking] : [],
+                    delivery_date: pkg.deliveryTime || 'Today',
+                    courier: pkg.courier
+                })),
+                all_shipments: packages.map(pkg => ({
+                    subject: pkg.name,
+                    from: 'Manual Entry',
+                    date: new Date().toISOString(),
+                    tracking_numbers: pkg.tracking ? [pkg.tracking] : [],
+                    delivery_date: pkg.deliveryTime || 'Today',
+                    courier: pkg.courier
+                }))
+            };
+
+            try {
+                await fetch('/api/save-packages', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+            } catch (error) {
+                console.error('Error saving packages to server:', error);
+            }
+        }
+
+        document.getElementById('packageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const pkg = {
+                name: document.getElementById('packageName').value,
+                courier: document.getElementById('courier').value,
+                tracking: document.getElementById('tracking').value,
+                deliveryTime: document.getElementById('deliveryTime').value,
+                addedAt: new Date().toISOString()
+            };
+
+            const packages = JSON.parse(localStorage.getItem('packages') || '[]');
+            packages.push(pkg);
+            localStorage.setItem('packages', JSON.stringify(packages));
+            saveToServer(packages);
+
+            // Reset form
+            this.reset();
+
+            // Reload display
+            loadPackages();
+        });
+
+        // Load packages on page load
+        loadPackages();
+
+        // Clear old packages daily (at midnight)
+        const lastClear = localStorage.getItem('lastPackageClear');
+        const today = new Date().toDateString();
+        if (lastClear !== today) {
+            localStorage.setItem('packages', '[]');
+            localStorage.setItem('lastPackageClear', today);
+            loadPackages();
+        }
+    </script>
+</body>
+</html>
