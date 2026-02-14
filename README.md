@@ -1,23 +1,25 @@
-# 🗞️ Briefing - RSS Dashboard v1.2
+# 🗞️ Briefing - RSS Dashboard v1.3
 
-A beautiful, card-based RSS feed aggregator and calendar dashboard built with Python and vanilla JavaScript. Get your daily news and schedule from multiple sources in one clean, responsive interface.
+A beautiful, card-based RSS feed aggregator with calendar and package tracking built with Python and vanilla JavaScript. Get your daily news, schedule, and deliveries from multiple sources in one clean, responsive interface.
 
 ![Dashboard Preview](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Version](https://img.shields.io/badge/version-1.2-blue.svg)
+![Version](https://img.shields.io/badge/version-1.3-blue.svg)
 
 ## ✨ Features
 
 - 📰 **RSS Feed Aggregation** - Fetch and display articles from multiple RSS/Atom feeds
 - 📅 **Calendar Integration** - Display today's events from iCal/ICS calendar feeds
+- 📦 **Package Tracking** - Automatic tracking of deliveries from Gmail (NEW in v1.3)
 - 🔄 **Recurring Events** - Full support for daily, weekly, monthly, and yearly recurring events
 - 🎨 **Card-Based UI** - Modern, responsive design with beautiful cards
 - 🏷️ **Category Organization** - Organize feeds and articles by category
+- 👁️ **Read/Unread Tracking** - Mark articles as read and toggle visibility
 - 🌓 **Dark Mode** - Toggle between light and dark themes
 - ⚡ **Smart Caching** - 15-minute cache to reduce load on RSS and calendar sources
 - 🔄 **Auto-Refresh** - Automatically updates every 5 minutes
 - 📱 **Responsive Design** - Works perfectly on mobile, tablet, and desktop
-- ⚙️ **Management UI** - Web interface for managing feeds and calendars
+- ⚙️ **Management UI** - Web interface for managing feeds, calendars, and email settings
 - 🚀 **Zero Dependencies** - Pure Python standard library, no external packages needed
 
 ## 🚀 Quick Start
@@ -88,6 +90,12 @@ You can also edit the `feeds.json` file directly:
       }
     ]
   },
+  "email": {
+    "address": "your.email@gmail.com",
+    "password": "your-app-password",
+    "provider": "gmail",
+    "enabled": true
+  },
   "settings": {
     "cacheTTL": 900,
     "maxItemsPerFeed": 20,
@@ -112,6 +120,23 @@ You can also edit the `feeds.json` file directly:
 - **name** - Display name for the calendar
 - **url** - iCal/ICS feed URL (works with Google Calendar, Apple Calendar, Outlook, etc.)
 - **enabled** - Set to `false` to temporarily disable a calendar without removing it
+
+#### Email Options (NEW in v1.3)
+
+- **address** - Your Gmail email address
+- **password** - Gmail app-specific password (NOT your regular password)
+- **provider** - Email provider (currently supports: gmail, outlook, yahoo, icloud)
+- **enabled** - Set to `false` to disable package tracking
+
+**Setting up Gmail Package Tracking:**
+1. Enable 2-Factor Authentication on your Google Account
+2. Go to [Google Account Security](https://myaccount.google.com/security)
+3. Under "2-Step Verification", click "App passwords"
+4. Select "Mail" and "Other (Custom name)"
+5. Name it "Briefing" and click Generate
+6. Copy the 16-character password and add it to feeds.json or use the Management UI
+
+See [PACKAGE_TRACKING_INTEGRATION.md](PACKAGE_TRACKING_INTEGRATION.md) for detailed setup instructions.
 
 #### Settings Options
 
@@ -180,13 +205,19 @@ Here are some popular RSS feeds to get you started:
   - Supports all-day events
   - Shows recurring events (daily, weekly, monthly, yearly)
   - Auto-updates with the rest of the dashboard
+- **📦 Packages This Week** - Shows deliveries arriving in the next 7 days (NEW in v1.3)
+  - Automatically scans Gmail for shipping notifications
+  - Displays courier, tracking number, and delivery date
+  - Supports Amazon, UPS, FedEx, USPS, and most online retailers
+  - Auto-updates with the rest of the dashboard
 - **Categories** - Filter articles by category
   - Click "All Articles" to see everything
   - Click a category to filter by that topic
 
 **Header Controls:**
-- **⚙️ Manage** - Open the management interface to configure feeds and calendars
-- **🔄 Refresh** - Manually refresh all feeds and calendars, clearing cache
+- **⚙️ Manage** - Open the management interface to configure feeds, calendars, and email settings
+- **🔄 Refresh** - Manually refresh all feeds, calendars, and packages, clearing cache
+- **👁️ Toggle Read** - Show or hide articles you've already read
 - **☀️/🌙 Theme Toggle** - Switch between light and dark mode
 
 **Article Cards:**
@@ -201,11 +232,11 @@ Here are some popular RSS feeds to get you started:
 
 Access the management page by clicking the **⚙️ Manage** button or visiting `http://localhost:3001/manage.html`
 
-**Two tabs available:**
+**Three tabs available:**
 
 **RSS Feeds Tab:**
 - Add new RSS feeds with custom names and categories
-- Edit existing feeds (name, URL, category)
+- Edit existing feeds (name, URL, category, maxItems)
 - Enable/disable feeds with a toggle
 - Delete unwanted feeds
 - Search feeds by name or URL
@@ -220,21 +251,37 @@ Access the management page by clicking the **⚙️ Manage** button or visiting 
 - Live statistics (total calendars, enabled count)
 - Supports Google Calendar, Apple Calendar, Outlook, and any iCal-compatible service
 
+**Email Tracking Tab:** (NEW in v1.3)
+- Configure Gmail credentials for automatic package tracking
+- Generate and save Gmail app passwords
+- Test email connection
+- Enable/disable package tracking
+- Step-by-step instructions for setting up Gmail IMAP access
+
 ## 🛠️ Development
 
 ### File Structure
 
 ```
 ~/Projects/Briefing/
-├── server.py              # Python backend server
-├── feeds.json             # Feed configuration
-├── README.md              # This file
+├── server.py                        # Python backend server
+├── feeds.json                       # Feed and email configuration
+├── email_shipments_imap.py          # IMAP email scanner for packages (NEW)
+├── README.md                        # This file
+├── PACKAGE_TRACKING_INTEGRATION.md  # Package tracking documentation (NEW)
+├── data/
+│   ├── shipments.json              # Package tracking data (NEW)
+│   └── shipments_manual.json       # Manual package entries (NEW)
 └── public/
-    ├── index.html         # Main HTML page
+    ├── index.html                  # Main dashboard HTML
+    ├── manage.html                 # Management interface HTML
+    ├── packages.html               # Manual package entry page (NEW)
     ├── css/
-    │   └── styles.css     # Styling and themes
+    │   ├── styles.css              # Main styling and themes
+    │   └── manage.css              # Management interface styles
     └── js/
-        └── app.js         # Frontend application logic
+        ├── app.js                  # Main dashboard logic
+        └── manage.js               # Management interface logic
 ```
 
 ### Customization
@@ -311,9 +358,11 @@ The server exposes these endpoints:
 
 - `GET /api/feeds` - Fetch all enabled feeds and return aggregated articles
 - `GET /api/calendar` - Fetch today's events from all enabled calendars
+- `GET /api/packages` - Fetch packages arriving in the next 7 days from Gmail (NEW in v1.3)
 - `GET /api/config` - Get current configuration from feeds.json
-- `POST /api/refresh` - Clear cache and force refresh of feeds and calendars
+- `POST /api/refresh` - Clear cache and force refresh of feeds, calendars, and packages
 - `POST /api/save-config` - Save configuration changes from management UI
+- `POST /api/save-packages` - Save manually entered package data (NEW in v1.3)
 
 ## 📅 Calendar Features
 
@@ -340,6 +389,27 @@ The server exposes these endpoints:
 - Shows event title, time, and description
 - Auto-refreshes with the rest of the dashboard
 
+## 📦 Package Tracking (NEW in v1.3)
+
+Briefing now includes automatic package tracking from your Gmail account!
+
+**Features:**
+- Automatically scans Gmail for shipping notifications
+- Displays packages arriving in the next 7 days
+- Extracts tracking numbers and delivery dates
+- Supports Amazon, UPS, FedEx, USPS, and most online retailers
+- Auto-refreshes with the rest of the dashboard
+- Manual package entry page as backup option
+
+**Setup:**
+1. Go to Management page → Email Tracking tab
+2. Enable 2FA on your Google Account
+3. Generate a Gmail app password
+4. Enter your email and app password
+5. Test connection and save
+
+See [PACKAGE_TRACKING_INTEGRATION.md](PACKAGE_TRACKING_INTEGRATION.md) for complete setup instructions and troubleshooting.
+
 ## 🔮 Future Enhancements
 
 Potential features for future versions:
@@ -348,13 +418,15 @@ Potential features for future versions:
 - [ ] Week view for calendar
 - [ ] Event click to show full details
 - [ ] Search and filter articles
-- [ ] Mark articles as read/unread
 - [ ] Favorite/bookmark articles
 - [ ] Keyboard shortcuts
 - [ ] Export articles to markdown
 - [ ] AI-powered article summaries
 - [ ] Multi-user support
 - [ ] Email digest of daily briefing
+- [ ] Package tracking links (click tracking number to view status)
+- [ ] Support for more email providers
+- [ ] Package delivery notifications
 
 ## 📄 License
 
@@ -373,6 +445,37 @@ MIT License - Feel free to use and modify as you wish!
 - **Use categories** - Group similar feeds together (e.g., all tech feeds at the top).
 - **Adjust refresh rate** - If you check infrequently, increase cacheTTL to reduce server load.
 - **Mobile bookmarks** - Add to your phone's home screen for quick access.
+- **Gmail for packages** - Forward shipping notifications from other accounts to Gmail for unified tracking.
+
+## 📋 Changelog
+
+### v1.3 (February 2026)
+- ✨ **NEW:** Gmail package tracking integration
+- ✨ **NEW:** Email settings management in admin UI
+- ✨ **NEW:** Manual package entry page
+- ✨ **NEW:** Packages widget in sidebar showing next 7 days of deliveries
+- 📚 Added comprehensive package tracking documentation
+
+### v1.2 (February 2026)
+- ✨ **NEW:** Read/unread article tracking
+- ✨ **NEW:** Toggle visibility of read articles
+- ✨ **NEW:** Per-feed maxItems configuration
+- 🐛 Fixed calendar timezone conversion (UTC to local time)
+- 📚 Updated documentation
+
+### v1.1 (January 2026)
+- ✨ **NEW:** Calendar integration with iCal/ICS feeds
+- ✨ **NEW:** Calendar management in admin UI
+- ✨ **NEW:** Recurring events support
+- 🎨 Enhanced sidebar with calendar widget
+
+### v1.0 (January 2026)
+- 🎉 Initial release
+- RSS feed aggregation
+- Card-based UI
+- Category organization
+- Dark mode
+- Management interface
 
 ---
 
