@@ -38,6 +38,9 @@
                 <button class="tab-btn" data-tab="calendar">
                     <span>📅 Calendars</span>
                 </button>
+                <button class="tab-btn" data-tab="email">
+                    <span>📦 Email Tracking</span>
+                </button>
             </div>
 
             <!-- Feeds Tab -->
@@ -137,6 +140,88 @@
                     <!-- Calendars will be rendered here -->
                 </div>
             </div> <!-- End Calendar Tab -->
+
+            <!-- Email Tab -->
+            <div id="emailTab" class="tab-content">
+                <div class="email-settings-container">
+                    <h2>📦 Package Tracking Settings</h2>
+                    <p class="section-description">
+                        Configure email access to automatically track package deliveries from your inbox.
+                        We support Gmail, Outlook, Yahoo, and iCloud.
+                    </p>
+
+                    <form id="emailSettingsForm" class="email-form">
+                        <div class="form-group">
+                            <label for="emailEnabled" class="checkbox-label">
+                                <input type="checkbox" id="emailEnabled" />
+                                <span>Enable package tracking from email</span>
+                            </label>
+                        </div>
+
+                        <div id="emailFormFields">
+                            <div class="form-group">
+                                <label for="emailAddress">Email Address *</label>
+                                <input type="email" id="emailAddress" placeholder="your.email@gmail.com" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emailProvider">Email Provider *</label>
+                                <select id="emailProvider" required>
+                                    <option value="gmail">Gmail</option>
+                                    <option value="outlook">Outlook / Hotmail</option>
+                                    <option value="yahoo">Yahoo Mail</option>
+                                    <option value="icloud">iCloud Mail</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emailPassword">App Password *</label>
+                                <input type="password" id="emailPassword" placeholder="Your app-specific password" required />
+                                <small>⚠️ Use an app-specific password, not your regular password</small>
+                            </div>
+
+                            <div class="email-help-section">
+                                <h3>📖 How to generate an app password:</h3>
+                                <div class="provider-instructions">
+                                    <div class="provider-instruction">
+                                        <strong>Gmail:</strong>
+                                        <ol>
+                                            <li>Enable 2-Factor Authentication on your Google Account</li>
+                                            <li>Go to <a href="https://myaccount.google.com/security" target="_blank">Google Account Security</a></li>
+                                            <li>Click "App passwords" (under 2-Step Verification)</li>
+                                            <li>Select "Mail" and "Other (Custom name)"</li>
+                                            <li>Name it "Briefing" and click Generate</li>
+                                            <li>Copy the 16-character password</li>
+                                        </ol>
+                                    </div>
+                                    <div class="provider-instruction">
+                                        <strong>Outlook:</strong>
+                                        <ol>
+                                            <li>Note: Basic auth is disabled for Outlook.com. Gmail is recommended.</li>
+                                            <li>For Microsoft 365 accounts, check with your admin</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-icon">💾</span>
+                                Save Email Settings
+                            </button>
+                            <button type="button" id="testEmailBtn" class="btn btn-secondary">
+                                <span class="btn-icon">🧪</span>
+                                Test Connection
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="emailStatus" class="email-status hidden">
+                        <!-- Status messages will appear here -->
+                    </div>
+                </div>
+            </div> <!-- End Email Tab -->
         </main>
 
         <!-- Add Feed Modal -->

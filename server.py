@@ -71,6 +71,8 @@ class RSSHandler(SimpleHTTPRequestHandler):
             self.handle_api_config()
         elif parsed_path.path == '/api/calendar':
             self.handle_api_calendar()
+        elif parsed_path.path == '/api/packages':
+            self.handle_api_packages()
         else:
             # Serve static files from public directory
             self.path = '/public' + self.path
@@ -85,6 +87,8 @@ class RSSHandler(SimpleHTTPRequestHandler):
             self.handle_api_refresh()
         elif parsed_path.path == '/api/save-config':
             self.handle_api_save_config()
+        elif parsed_path.path == '/api/save-packages':
+            self.handle_api_save_packages()
         else:
             self.send_error(404)
 
@@ -203,6 +207,75 @@ class RSSHandler(SimpleHTTPRequestHandler):
             'lastUpdated': datetime.now().isoformat()
         }
         self.wfile.write(json.dumps(response).encode())
+
+    def handle_api_packages(self):
+        """Fetch package tracking information from Gmail"""
+        config = load_config()
+        email_config = config.get('email', {})
+
+        if not email_config.get('enabled', False):
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps({
+                'packages': [],
+                'errors': ['Email tracking not enabled'],
+                'lastUpdated': datetime.now().isoformat()
+            }).encode())
+            return
+
+        try:
+            import subprocess
+            import sys
+
+            # Get email credentials from config
+            email_address = email_config.get('address')
+            email_password = email_config.get('password')
+            email_provider = email_config.get('provider', 'gmail')
+
+            # Run the IMAP script
+            script_path = Path(__file__).parent / 'email_shipments_imap.py'
+            result = subprocess.run(
+                [sys.executable, str(script_path), email_address, email_password, email_provider],
+                capture_output=True,
+                text=True,
+                timeout=60
+            )
+
+            # Read the shipments.json file
+            shipments_file = Path(__file__).parent / 'data' / 'shipments.json'
+            if shipments_file.exists():
+                with open(shipments_file, 'r') as f:
+                    shipments_data = json.load(f)
+
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+
+                response = {
+                    'packages': shipments_data.get('deliveries', []),
+                    'totalShipments': shipments_data.get('total_shipments', 0),
+                    'upcomingCount': shipments_data.get('upcoming_count', shipments_data.get('today_count', 0)),
+                    'errors': [],
+                    'lastUpdated': shipments_data.get('timestamp')
+                }
+                self.wfile.write(json.dumps(response).encode())
+            else:
+                raise Exception('Shipments file not found')
+
+        except Exception as e:
+            print(f"Error fetching packages: {e}")
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps({
+                'packages': [],
+                'errors': [str(e)],
+                'lastUpdated': datetime.now().isoformat()
+            }).encode())
 
     def handle_api_refresh(self):
         """Clear cache and refetch feeds"""
@@ -615,6 +688,29 @@ class RSSHandler(SimpleHTTPRequestHandler):
         except Exception as e:
             print(f"Error parsing datetime '{dt_string}': {e}")
             return None
+
+    def handle_api_save_packages(self):
+        """Save manually entered package data"""
+        try:
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            data = json.loads(post_data.decode('utf-8'))
+
+            # Save to data/shipments_manual.json
+            data_dir = Path(__file__).parent / 'data'
+            data_dir.mkdir(exist_ok=True)
+
+            output_file = data_dir / 'shipments_manual.json'
+            with open(output_file, 'w') as f:
+                json.dump(data, f, indent=2)
+
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({'status': 'success'}).encode())
+        except Exception as e:
+            print(f"Error saving packages: {e}")
+            self.send_error(500, f"Error saving packages: {e}")
 
     def log_message(self, format, *args):
         """Custom log format"""

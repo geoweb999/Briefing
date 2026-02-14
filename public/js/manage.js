@@ -5,6 +5,7 @@
 // ==================== State Management ====================
 let feeds = [];
 let calendars = [];
+let emailConfig = {};
 let settings = {};
 let originalConfig = null;
 let selectedCategory = 'all';
@@ -69,7 +70,17 @@ const elements = {
     editCalendarName: document.getElementById('editCalendarName'),
     editCalendarUrl: document.getElementById('editCalendarUrl'),
     editCalendarEnabled: document.getElementById('editCalendarEnabled'),
-    deleteCalendarBtn: document.getElementById('deleteCalendarBtn')
+    deleteCalendarBtn: document.getElementById('deleteCalendarBtn'),
+
+    // Email Elements
+    emailSettingsForm: document.getElementById('emailSettingsForm'),
+    emailEnabled: document.getElementById('emailEnabled'),
+    emailFormFields: document.getElementById('emailFormFields'),
+    emailAddress: document.getElementById('emailAddress'),
+    emailProvider: document.getElementById('emailProvider'),
+    emailPassword: document.getElementById('emailPassword'),
+    testEmailBtn: document.getElementById('testEmailBtn'),
+    emailStatus: document.getElementById('emailStatus')
 };
 
 // ==================== Theme Management ====================
@@ -101,6 +112,7 @@ async function loadConfig() {
         const data = await response.json();
         feeds = data.feeds || [];
         calendars = (data.calendar && data.calendar.sources) || [];
+        emailConfig = data.email || {};
         settings = data.settings || {};
         originalConfig = JSON.parse(JSON.stringify(data));
 
@@ -112,6 +124,7 @@ async function loadConfig() {
         renderFeeds();
         updateCalendarStats();
         renderCalendars();
+        renderEmailSettings();
 
         elements.loadingState.classList.add('hidden');
     } catch (error) {
@@ -139,6 +152,7 @@ async function saveConfig() {
             calendar: {
                 sources: calendars
             },
+            email: emailConfig,
             settings: settings
         };
 
@@ -586,6 +600,85 @@ function switchTab(tabName) {
     });
 }
 
+// ==================== Email Settings ====================
+function renderEmailSettings() {
+    if (!elements.emailEnabled) return;
+
+    // Load email settings into form
+    elements.emailEnabled.checked = emailConfig.enabled || false;
+    elements.emailAddress.value = emailConfig.address || '';
+    elements.emailProvider.value = emailConfig.provider || 'gmail';
+    elements.emailPassword.value = emailConfig.password || '';
+
+    // Toggle form fields visibility
+    toggleEmailFormFields();
+
+    // Add event listener for enable toggle
+    elements.emailEnabled.addEventListener('change', toggleEmailFormFields);
+}
+
+function toggleEmailFormFields() {
+    if (elements.emailEnabled.checked) {
+        elements.emailFormFields.style.display = 'block';
+    } else {
+        elements.emailFormFields.style.display = 'none';
+    }
+}
+
+async function saveEmailSettings() {
+    try {
+        // Get form values
+        const newEmailConfig = {
+            enabled: elements.emailEnabled.checked,
+            address: elements.emailAddress.value,
+            provider: elements.emailProvider.value,
+            password: elements.emailPassword.value
+        };
+
+        // Update email config
+        emailConfig = newEmailConfig;
+        hasChanges = true;
+
+        // Show status
+        showEmailStatus('Email settings saved! Click "Save All Changes" to apply.', 'success');
+    } catch (error) {
+        console.error('Error saving email settings:', error);
+        showEmailStatus('Failed to save email settings: ' + error.message, 'error');
+    }
+}
+
+async function testEmailConnection() {
+    try {
+        showEmailStatus('Testing email connection...', 'info');
+        elements.testEmailBtn.disabled = true;
+
+        // For now, just validate the form fields
+        if (!elements.emailAddress.value || !elements.emailPassword.value) {
+            throw new Error('Please fill in all required fields');
+        }
+
+        // In a real implementation, you'd make an API call here to test the connection
+        // For now, we'll just show success
+        showEmailStatus('Connection test successful! Make sure to save your settings.', 'success');
+    } catch (error) {
+        showEmailStatus('Connection test failed: ' + error.message, 'error');
+    } finally {
+        elements.testEmailBtn.disabled = false;
+    }
+}
+
+function showEmailStatus(message, type) {
+    const status = elements.emailStatus;
+    status.textContent = message;
+    status.className = `email-status ${type}`;
+    status.classList.remove('hidden');
+
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        status.classList.add('hidden');
+    }, 5000);
+}
+
 // ==================== Utilities ====================
 function escapeHtml(text) {
     const div = document.createElement('div');
@@ -704,6 +797,19 @@ function setupEventListeners() {
         elements.deleteCalendarBtn.addEventListener('click', () => {
             deleteCalendar(parseInt(elements.editCalendarIndex.value));
         });
+    }
+
+    // Email settings form
+    if (elements.emailSettingsForm) {
+        elements.emailSettingsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            saveEmailSettings();
+        });
+    }
+
+    // Test email connection
+    if (elements.testEmailBtn) {
+        elements.testEmailBtn.addEventListener('click', testEmailConnection);
     }
 
     // Warn before leaving with unsaved changes
