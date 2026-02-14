@@ -589,13 +589,26 @@ class RSSHandler(SimpleHTTPRequestHandler):
             return None
 
         try:
-            # Remove trailing 'Z' if present (UTC indicator)
+            # Check if it ends with 'Z' (UTC indicator)
+            is_utc = dt_string.endswith('Z')
             dt_string = dt_string.rstrip('Z')
 
             # Check if it contains 'T' (datetime) or not (date only)
             if 'T' in dt_string:
                 # DATE-TIME format: YYYYMMDDTHHMMSS
-                return datetime.strptime(dt_string, '%Y%m%dT%H%M%S')
+                parsed_dt = datetime.strptime(dt_string, '%Y%m%dT%H%M%S')
+
+                # If it was UTC, convert to local time
+                if is_utc:
+                    from datetime import timezone
+                    # Treat as UTC
+                    parsed_dt = parsed_dt.replace(tzinfo=timezone.utc)
+                    # Convert to local time
+                    local_dt = parsed_dt.astimezone()
+                    # Return as naive datetime in local timezone
+                    return local_dt.replace(tzinfo=None)
+
+                return parsed_dt
             else:
                 # DATE format: YYYYMMDD
                 return datetime.strptime(dt_string, '%Y%m%d')
