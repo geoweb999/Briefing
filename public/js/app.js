@@ -24,6 +24,7 @@ const elements = {
     feedErrorList: document.getElementById('feedErrorList'),
     cardsGrid: document.getElementById('cardsGrid'),
     refreshBtn: document.getElementById('refreshBtn'),
+    markOldReadBtn: document.getElementById('markOldReadBtn'),
     themeToggle: document.getElementById('themeToggle'),
     lastUpdated: document.getElementById('lastUpdated'),
     articleCount: document.getElementById('articleCount'),
@@ -334,6 +335,36 @@ function markCategoryAsRead(category, categoryArticles) {
     // Update category counts in sidebar
     const categories = getCategories(articles);
     updateCategoryFilter(categories);
+}
+
+function markOlderThanTodayAsRead() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset to start of today
+
+    let markedCount = 0;
+
+    // Filter articles that are older than today
+    articles.forEach(article => {
+        const articleDate = new Date(article.pubDate);
+        articleDate.setHours(0, 0, 0, 0);
+
+        if (articleDate < today && !isArticleRead(article.link)) {
+            markArticleAsRead(article.link);
+            markedCount++;
+        }
+    });
+
+    // Re-render to update UI
+    const filteredArticles = filterArticlesByCategory(articles, selectedCategory);
+    renderCards(filteredArticles);
+    updateFooter(filteredArticles);
+
+    // Update category counts in sidebar
+    const categories = getCategories(articles);
+    updateCategoryFilter(categories);
+
+    // Show feedback
+    console.log(`Marked ${markedCount} old articles as read`);
 }
 
 function createCard(article) {
@@ -772,6 +803,11 @@ function setupAutoRefresh() {
 function setupEventListeners() {
     elements.refreshBtn.addEventListener('click', refreshFeeds);
     elements.themeToggle.addEventListener('click', toggleTheme);
+
+    // Mark older than today read button
+    if (elements.markOldReadBtn) {
+        elements.markOldReadBtn.addEventListener('click', markOlderThanTodayAsRead);
+    }
 
     // Read toggle button
     if (elements.readToggle) {
