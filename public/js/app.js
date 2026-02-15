@@ -24,7 +24,6 @@ const elements = {
     feedErrorList: document.getElementById('feedErrorList'),
     cardsGrid: document.getElementById('cardsGrid'),
     refreshBtn: document.getElementById('refreshBtn'),
-    markOldReadBtn: document.getElementById('markOldReadBtn'),
     themeToggle: document.getElementById('themeToggle'),
     lastUpdated: document.getElementById('lastUpdated'),
     articleCount: document.getElementById('articleCount'),
@@ -289,14 +288,27 @@ function renderCards(articles) {
         categoryTitle.className = 'category-title';
         categoryTitle.textContent = category;
 
+        // Button container for multiple buttons
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'category-buttons';
+
         const markAllReadBtn = document.createElement('button');
         markAllReadBtn.className = 'btn btn-secondary btn-mark-all-read';
         markAllReadBtn.innerHTML = '<span class="btn-icon">✓</span> Mark All Read';
         markAllReadBtn.title = `Mark all articles in ${category} as read`;
         markAllReadBtn.addEventListener('click', () => markCategoryAsRead(category, categoryArticles));
 
+        const markOldReadBtn = document.createElement('button');
+        markOldReadBtn.className = 'btn btn-secondary btn-mark-old-read';
+        markOldReadBtn.innerHTML = '<span class="btn-icon">📅</span> Mark Old Read';
+        markOldReadBtn.title = `Mark articles older than today in ${category} as read`;
+        markOldReadBtn.addEventListener('click', () => markCategoryOldAsRead(category, categoryArticles));
+
+        buttonContainer.appendChild(markAllReadBtn);
+        buttonContainer.appendChild(markOldReadBtn);
+
         categoryHeader.appendChild(categoryTitle);
-        categoryHeader.appendChild(markAllReadBtn);
+        categoryHeader.appendChild(buttonContainer);
         categorySection.appendChild(categoryHeader);
 
         elements.cardsGrid.appendChild(categorySection);
@@ -337,22 +349,14 @@ function markCategoryAsRead(category, categoryArticles) {
     updateCategoryFilter(categories);
 }
 
-function markOlderThanTodayAsRead() {
+function markCategoryOldAsRead(category, categoryArticles) {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Reset to start of today
 
     let markedCount = 0;
 
-    // Get the articles to process based on selected category
-    const articlesToProcess = selectedCategory === 'all'
-        ? articles
-        : articles.filter(article => {
-            const articleCat = article.category || 'Uncategorized';
-            return articleCat === selectedCategory;
-          });
-
-    // Filter articles that are older than today
-    articlesToProcess.forEach(article => {
+    // Filter articles that are older than today in this category
+    categoryArticles.forEach(article => {
         const articleDate = new Date(article.pubDate);
         articleDate.setHours(0, 0, 0, 0);
 
@@ -372,7 +376,7 @@ function markOlderThanTodayAsRead() {
     updateCategoryFilter(categories);
 
     // Show feedback
-    console.log(`Marked ${markedCount} old articles as read in category: ${selectedCategory}`);
+    console.log(`Marked ${markedCount} old articles as read in category: ${category}`);
 }
 
 function createCard(article) {
@@ -811,11 +815,6 @@ function setupAutoRefresh() {
 function setupEventListeners() {
     elements.refreshBtn.addEventListener('click', refreshFeeds);
     elements.themeToggle.addEventListener('click', toggleTheme);
-
-    // Mark older than today read button
-    if (elements.markOldReadBtn) {
-        elements.markOldReadBtn.addEventListener('click', markOlderThanTodayAsRead);
-    }
 
     // Read toggle button
     if (elements.readToggle) {
