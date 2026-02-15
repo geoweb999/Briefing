@@ -214,7 +214,8 @@ class EmailShipmentTracker:
         upcoming_shipments = []
 
         for shipment in shipments:
-            delivery = shipment.get('delivery_date', '').lower()
+            delivery = shipment.get('delivery_date', '') or ''
+            delivery = delivery.lower()
             if not delivery:
                 continue
 
