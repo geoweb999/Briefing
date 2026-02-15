@@ -343,8 +343,16 @@ function markOlderThanTodayAsRead() {
 
     let markedCount = 0;
 
+    // Get the articles to process based on selected category
+    const articlesToProcess = selectedCategory === 'all'
+        ? articles
+        : articles.filter(article => {
+            const articleCat = article.category || 'Uncategorized';
+            return articleCat === selectedCategory;
+          });
+
     // Filter articles that are older than today
-    articles.forEach(article => {
+    articlesToProcess.forEach(article => {
         const articleDate = new Date(article.pubDate);
         articleDate.setHours(0, 0, 0, 0);
 
@@ -364,7 +372,7 @@ function markOlderThanTodayAsRead() {
     updateCategoryFilter(categories);
 
     // Show feedback
-    console.log(`Marked ${markedCount} old articles as read`);
+    console.log(`Marked ${markedCount} old articles as read in category: ${selectedCategory}`);
 }
 
 function createCard(article) {
