@@ -45,7 +45,7 @@ class EmailShipmentTracker:
             date = (datetime.now() - timedelta(days=days_back)).strftime("%d-%b-%Y")
 
             # Search for shipping keywords
-            keywords = ['shipped', 'shipping', 'tracking', 'delivery', 'package', 'order']
+            keywords = ['shipped', 'shipping', 'tracking', 'delivery', 'package', 'order', 'ready']
 
             email_ids = []
             for keyword in keywords:
