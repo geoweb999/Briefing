@@ -265,9 +265,46 @@ function renderCards(articles) {
         return dateA - dateB; // Ascending order (oldest first)
     });
 
+    // Group articles by category
+    const articlesByCategory = new Map();
     displayArticles.forEach(article => {
-        const card = createCard(article);
-        elements.cardsGrid.appendChild(card);
+        const category = article.category || 'Uncategorized';
+        if (!articlesByCategory.has(category)) {
+            articlesByCategory.set(category, []);
+        }
+        articlesByCategory.get(category).push(article);
+    });
+
+    // Render each category section
+    articlesByCategory.forEach((categoryArticles, category) => {
+        // Create category header with "Mark All Read" button
+        const categorySection = document.createElement('div');
+        categorySection.className = 'category-section';
+
+        const categoryHeader = document.createElement('div');
+        categoryHeader.className = 'category-header';
+
+        const categoryTitle = document.createElement('h2');
+        categoryTitle.className = 'category-title';
+        categoryTitle.textContent = category;
+
+        const markAllReadBtn = document.createElement('button');
+        markAllReadBtn.className = 'btn btn-secondary btn-mark-all-read';
+        markAllReadBtn.innerHTML = '<span class="btn-icon">✓</span> Mark All Read';
+        markAllReadBtn.title = `Mark all articles in ${category} as read`;
+        markAllReadBtn.addEventListener('click', () => markCategoryAsRead(category, categoryArticles));
+
+        categoryHeader.appendChild(categoryTitle);
+        categoryHeader.appendChild(markAllReadBtn);
+        categorySection.appendChild(categoryHeader);
+
+        elements.cardsGrid.appendChild(categorySection);
+
+        // Render cards for this category
+        categoryArticles.forEach(article => {
+            const card = createCard(article);
+            elements.cardsGrid.appendChild(card);
+        });
     });
 
     // Show empty state if no articles to display
@@ -281,6 +318,19 @@ function renderCards(articles) {
 
     elements.loadingState.classList.add('hidden');
     elements.errorState.classList.add('hidden');
+}
+
+function markCategoryAsRead(category, categoryArticles) {
+    // Mark all articles in this category as read
+    categoryArticles.forEach(article => {
+        markArticleAsRead(article.link);
+    });
+
+    // Re-render to update UI
+    const filteredArticles = filterArticlesByCategory(articles, selectedCategory);
+    renderCards(filteredArticles);
+    updateFooter(filteredArticles);
+    renderCategories(articles);
 }
 
 function createCard(article) {
