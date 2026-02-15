@@ -524,6 +524,42 @@ body {
     }
 }
 
+/* Category Section Styles */
+.category-section {
+    grid-column: 1 / -1;
+    margin-top: 2rem;
+}
+
+.category-section:first-child {
+    margin-top: 0;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.category-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.btn-mark-all-read {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+
+.btn-mark-all-read .btn-icon {
+    font-size: 0.875rem;
+}
+
 /* ==================== Card Component ==================== */
 .card {
     background: var(--bg-secondary);
