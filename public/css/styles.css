@@ -550,13 +550,21 @@ body {
     margin: 0;
 }
 
-.btn-mark-all-read {
+.category-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.btn-mark-all-read,
+.btn-mark-old-read {
     font-size: 0.875rem;
     padding: 0.5rem 1rem;
     white-space: nowrap;
 }
 
-.btn-mark-all-read .btn-icon {
+.btn-mark-all-read .btn-icon,
+.btn-mark-old-read .btn-icon {
     font-size: 0.875rem;
 }
 
