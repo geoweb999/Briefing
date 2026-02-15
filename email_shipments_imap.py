@@ -214,6 +214,14 @@ class EmailShipmentTracker:
         upcoming_shipments = []
 
         for shipment in shipments:
+            # Check if "ready" is in the subject (pickup notifications)
+            subject = shipment.get('subject', '').lower()
+            if 'ready' in subject:
+                # Treat "ready" packages as available today
+                shipment['delivery_date'] = 'Today'
+                upcoming_shipments.append(shipment)
+                continue
+
             delivery = shipment.get('delivery_date', '') or ''
             delivery = delivery.lower()
             if not delivery:
