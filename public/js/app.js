@@ -330,7 +330,10 @@ function markCategoryAsRead(category, categoryArticles) {
     const filteredArticles = filterArticlesByCategory(articles, selectedCategory);
     renderCards(filteredArticles);
     updateFooter(filteredArticles);
-    renderCategories(articles);
+
+    // Update category counts in sidebar
+    const categories = getCategories(articles);
+    updateCategoryFilter(categories);
 }
 
 function createCard(article) {
