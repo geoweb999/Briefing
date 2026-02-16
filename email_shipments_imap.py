@@ -36,26 +36,48 @@ class EmailShipmentTracker:
             print("- Check your email address and password")
             return False
 
-    def search_shipping_emails(self, days_back=14):
+    def select_folder(self, folder_name=None):
+        """Select IMAP folder/label to search"""
+        if folder_name and folder_name.strip():
+            try:
+                result, data = self.mail.select(folder_name)
+                if result != 'OK':
+                    raise Exception(f"Folder '{folder_name}' not found")
+                print(f"✓ Selected folder: {folder_name}")
+                return True
+            except Exception as e:
+                print(f"⚠️  Failed to select folder '{folder_name}': {e}")
+                print("   Falling back to INBOX with keyword search")
+                self.mail.select('INBOX')
+                return False
+        else:
+            self.mail.select('INBOX')
+            return False
+
+    def search_shipping_emails(self, days_back=14, folder=None):
         """Search for shipping-related emails"""
         try:
-            self.mail.select('INBOX')
+            folder_selected = self.select_folder(folder)
 
             # Search date
             date = (datetime.now() - timedelta(days=days_back)).strftime("%d-%b-%Y")
 
-            # Search for shipping keywords
-            keywords = ['shipped', 'shipping', 'tracking', 'delivery', 'package', 'order', 'ready']
+            if folder_selected:
+                # Folder mode: get ALL emails in folder (no keyword filter)
+                _, data = self.mail.search(None, f'(SINCE {date})')
+                email_ids = data[0].split()
+                print(f"✓ Found {len(email_ids)} emails in folder\n")
+            else:
+                # Keyword mode: search by keywords in INBOX
+                keywords = ['shipped', 'shipping', 'tracking', 'delivery', 'package', 'order', 'ready']
+                email_ids = []
+                for keyword in keywords:
+                    _, data = self.mail.search(None, f'(SINCE {date} SUBJECT "{keyword}")')
+                    email_ids.extend(data[0].split())
 
-            email_ids = []
-            for keyword in keywords:
-                _, data = self.mail.search(None, f'(SINCE {date} SUBJECT "{keyword}")')
-                email_ids.extend(data[0].split())
-
-            # Remove duplicates
-            email_ids = list(set(email_ids))
-
-            print(f"✓ Found {len(email_ids)} shipping-related emails\n")
+                # Remove duplicates
+                email_ids = list(set(email_ids))
+                print(f"✓ Found {len(email_ids)} shipping-related emails\n")
 
             return email_ids
         except Exception as e:
@@ -259,9 +281,10 @@ def main():
     }
 
     if len(sys.argv) < 3:
-        print("\nUsage: python3 email_shipments_imap.py <email> <password> [provider]")
+        print("\nUsage: python3 email_shipments_imap.py <email> <password> [provider] [folder]")
         print("\nProvider options: outlook (default), gmail, yahoo, icloud")
-        print("\nExample: python3 email_shipments_imap.py you@outlook.com yourpassword outlook")
+        print("Folder: Optional Gmail label/folder (e.g., 'Shipping', '[Gmail]/All Mail')")
+        print("\nExample: python3 email_shipments_imap.py you@gmail.com yourpassword gmail Shipping")
         print("\nSecurity Note:")
         print("- For Outlook: May need to enable 'app passwords' in account settings")
         print("- For Gmail: Enable 'Less secure apps' or create app-specific password")
@@ -271,6 +294,7 @@ def main():
     email_addr = sys.argv[1]
     password = sys.argv[2]
     provider = sys.argv[3] if len(sys.argv) > 3 else 'outlook'
+    folder = sys.argv[4] if len(sys.argv) > 4 else None  # NEW: folder parameter
 
     # Detect provider from email if not specified
     if '@outlook.com' in email_addr or '@hotmail.com' in email_addr:
@@ -294,7 +318,7 @@ def main():
 
     # Search for emails
     print("Searching for shipping emails...\n")
-    email_ids = tracker.search_shipping_emails(days_back=14)
+    email_ids = tracker.search_shipping_emails(days_back=14, folder=folder)
 
     # Fetch emails
     emails = []

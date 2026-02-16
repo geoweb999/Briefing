@@ -233,11 +233,19 @@ class RSSHandler(SimpleHTTPRequestHandler):
             email_address = email_config.get('address')
             email_password = email_config.get('password')
             email_provider = email_config.get('provider', 'gmail')
+            email_folder = email_config.get('folder', '')  # NEW: get folder
+
+            # Build subprocess command
+            script_path = Path(__file__).parent / 'email_shipments_imap.py'
+            cmd = [sys.executable, str(script_path), email_address, email_password, email_provider]
+
+            # Add folder parameter if specified
+            if email_folder:
+                cmd.append(email_folder)
 
             # Run the IMAP script
-            script_path = Path(__file__).parent / 'email_shipments_imap.py'
             result = subprocess.run(
-                [sys.executable, str(script_path), email_address, email_password, email_provider],
+                cmd,
                 capture_output=True,
                 text=True,
                 timeout=60

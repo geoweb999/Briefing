@@ -79,6 +79,7 @@ const elements = {
     emailAddress: document.getElementById('emailAddress'),
     emailProvider: document.getElementById('emailProvider'),
     emailPassword: document.getElementById('emailPassword'),
+    emailFolder: document.getElementById('emailFolder'),
     testEmailBtn: document.getElementById('testEmailBtn'),
     emailStatus: document.getElementById('emailStatus')
 };
@@ -609,6 +610,7 @@ function renderEmailSettings() {
     elements.emailAddress.value = emailConfig.address || '';
     elements.emailProvider.value = emailConfig.provider || 'gmail';
     elements.emailPassword.value = emailConfig.password || '';
+    elements.emailFolder.value = emailConfig.folder || '';  // NEW
 
     // Toggle form fields visibility
     toggleEmailFormFields();
@@ -632,7 +634,8 @@ async function saveEmailSettings() {
             enabled: elements.emailEnabled.checked,
             address: elements.emailAddress.value,
             provider: elements.emailProvider.value,
-            password: elements.emailPassword.value
+            password: elements.emailPassword.value,
+            folder: elements.emailFolder.value.trim()  // NEW
         };
 
         // Update email config
